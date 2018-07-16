@@ -8,18 +8,16 @@ class ProfilePage extends Component {
         const {getUser} = this.props;
         getUser();
     }
-
     render(){
         const {user} = this.props;
-        
         return(
            <UserCard user={user}/>
         )
     }
 }
 
-const mapStateToProps = state =>({
-    user: state.user
+const mapStateToProps = ({user}) =>({
+    user: user.profile
 });
 
 const mapDispatchToProps = dispatch =>({
