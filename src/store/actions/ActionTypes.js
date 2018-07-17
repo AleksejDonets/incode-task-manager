@@ -1,0 +1,5 @@
+export const LOAD_USER = "LOAD_USER";
+export const LOAD_USER_SUCCESS = "LOAD_USER_SECCESS";
+export const UPDATE_USER = "UPDATE_USER";
+export const UPDATE_USER_SUCCESS = "UPDATE_USER_SUCCESS";
+    

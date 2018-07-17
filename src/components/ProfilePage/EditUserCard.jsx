@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -17,20 +16,18 @@ const Input = ({className, input}) => {
   />)
 }
 
-class EditCardUser extends Component {
+const EditCardUser = ({handleSubmit, classes, onSubmitHandler }) =>  {
  
-   render(){
-     const {classes, } = this.props;
+
      return(
-       <div>
-         <form>
-          <Card className={classes.editForm}>
+      
+         <form onSubmit={handleSubmit(onSubmitHandler)} >
+          <Card className={ classes.editForm }>
             <Typography component="div">
               <Field 
                 name="first_name"
                 component={Input}
                 type="text"
-                
               />
               </Typography>
               <Typography component="div">
@@ -38,8 +35,6 @@ class EditCardUser extends Component {
                 name="email"
                 component={Input} 
                 type="text"
-                
-                
               />
               </Typography>
               <Typography component="div">
@@ -47,7 +42,6 @@ class EditCardUser extends Component {
                 name="date_birth"
                 component={Input}
                 type="text"
-                
               />
               </Typography>
               <Typography component="div">
@@ -55,31 +49,25 @@ class EditCardUser extends Component {
                 name="list_of_skils"
                 component={Input}
                 type="text"
-                
               />
               </Typography>
               <CardActions className={classes.alItem}>
                 <Button variant="contained" type="submit"  color="primary"  className={classes.button}>
-                 
+                  Save
                 </Button>
               </CardActions>
             </Card>
          </form>
-       </div>
+      
      )
-   }
+  
 };
 
-EditCardUser = reduxForm({
+
+
+
+
+export default reduxForm({
   form:'editForm',
-  enableReinitialize : true , 
-})(EditCardUser);
-
-EditCardUser = connect(
-  state=> ({
-    initialValues:state.user.profile
-  }),
- 
-)(EditCardUser)
-
-export default withStyles(styles)(EditCardUser);
+  enableReinitialize : true, 
+})(withStyles(styles)(EditCardUser));
