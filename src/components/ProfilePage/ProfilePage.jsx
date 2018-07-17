@@ -1,29 +1,45 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { loadUser } from '../../store/actions';
+import { loadUser, editUser } from '../../store';
 import UserCard from './UserCard';
+import EditCardUser from './EditUserCard';
 
 class ProfilePage extends Component {
-    componentDidMount = () => {
-        const {getUser} = this.props;
-        getUser();
-    }
-    render(){
-        const {user} = this.props;
-        return(
-           <UserCard user={user}/>
-        )
-    }
+
+  static propTypes = {
+    getUser: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired,
+  }
+
+  componentDidMount() {
+    const { getUser } = this.props;
+    getUser();
+  }
+
+  render() {
+    const { user } = this.props;
+    return (
+       <div>
+         <UserCard user={user}/>
+         <EditCardUser/> 
+       </div>
+          
+    
+     
+    );
+  }
 }
 
-const mapStateToProps = ({user}) =>({
-    user: user.profile
+const mapStateToProps = ({ user }) => ({
+  user: user.profile,
 });
 
-const mapDispatchToProps = dispatch =>({
-    getUser: () => {
-        dispatch(loadUser());
-    }
-})
+const mapDispatchToProps = dispatch => ({
+  getUser: () => {
+    dispatch(loadUser());
+  },
+  
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
