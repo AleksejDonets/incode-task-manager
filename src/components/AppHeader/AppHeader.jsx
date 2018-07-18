@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { withStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 import styles from './styles';
 
 const AppHeader = ({ classes }) => {
@@ -11,7 +12,10 @@ const AppHeader = ({ classes }) => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <AccountCircle />
+          <Link to='/tasks/'>dsds</Link>
+          <Link to='/'>
+            <AccountCircle />
+          </Link>
         </Toolbar>
       </AppBar>
     </div>

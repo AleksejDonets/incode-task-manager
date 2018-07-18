@@ -1,8 +1,46 @@
 {
   "user": {
+    "id": "1",
     "first_name": "Bob",
-    "email": "pcomusso0@prlog.org",
+    "email": "das@fdfd.fds",
     "date_birth": "10.30.1981dsadsad",
     "list_of_skils": "Database Administration"
-  }
+  },
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Some title",
+      "description": "",
+      "status": "In Progress",
+      "taskId": 1235
+    },
+    {
+      "id": 343,
+      "title": "Some title",
+      "description": "",
+      "status": "To Do",
+      "taskId": 343
+    },
+    {
+      "id": 123423,
+      "title": "Some title",
+      "description": "",
+      "status": "Done",
+      "taskId": 4322
+    },
+    {
+      "id": 42341,
+      "title": "Some title",
+      "description": "",
+      "status": "Done",
+      "taskId": 456
+    },
+    {
+      "id": 1,
+      "title": "Some title",
+      "description": "",
+      "status": "Peer Review",
+      "taskId": 3254
+    }
+  ]
 }

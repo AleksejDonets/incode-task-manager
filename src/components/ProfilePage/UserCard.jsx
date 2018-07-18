@@ -9,8 +9,7 @@ import Edit from '@material-ui/icons/Edit';
 import Typography from '@material-ui/core/Typography';
 import styles from './styles';
 
-const UserCard = ({ classes, user, toggleEdit } ) => {
-  
+const UserCard = ({ classes, user, toggleEdit }) => {
   return (
     <Card className={classes.card}>
       <CardContent>
@@ -39,6 +38,7 @@ const UserCard = ({ classes, user, toggleEdit } ) => {
 UserCard.propTypes = {
   user: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
+  toggleEdit: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(UserCard);

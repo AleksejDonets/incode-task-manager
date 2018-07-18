@@ -22,7 +22,9 @@ const styles = {
     textAlign: 'center',
     padding: '50px 30px',
     margin: '50px auto',
-  }
+    boxSizing: 'border-box',
+  },
+ 
 };
 
 export default styles;

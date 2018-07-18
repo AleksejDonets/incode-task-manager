@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { loadUserFetch, editUserSucces } from '../../store/actions';
+import {  editUserSucces } from '../../store/actions';
 import UserCard from './UserCard';
 import EditCardUser from './EditUserCard';
 
@@ -12,35 +12,35 @@ class ProfilePage extends Component {
     this.state = {
       edit: false
     }
-    
     this.saveUser = this.saveUser.bind(this);
     this.toggleEditStatus = this.toggleEditStatus.bind(this);
   }
+
   static propTypes = {
-    getUser: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
   }
-  toggleEditStatus(){
+  toggleEditStatus = () => {
     this.setState({
       edit: !this.state.edit
     })
   }
-  componentDidMount() {
-    const { getUser } = this.props;
-    console.log(loadUserFetch);
-    getUser();
-  }
-
+  
   saveUser(user){   
     this.props.saveEditUser(user);
+    this.toggleEditStatus();
   }
   render() {
     const { user } = this.props;
     return (
-       <div>
-         
-         <EditCardUser initialValues={user} onSubmitHandler={(values) => {this.saveUser(values)}} /> 
-       </div>
+        <div>
+          {
+            this.state.edit ? 
+              (<EditCardUser initialValues={user} onSubmitHandler={(values) => {this.saveUser(values)}} />) : 
+              (<UserCard user={user} toggleEdit={this.toggleEditStatus} />)
+          }
+        </div>
+          
+        
     );
   }
 }
@@ -52,7 +52,7 @@ const mapStateToProps = ({ user }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getUser: () => dispatch(loadUserFetch()),
+
   saveEditUser: user => dispatch(editUserSucces(user)),
 });
 
