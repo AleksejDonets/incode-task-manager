@@ -12,7 +12,7 @@ const AppHeader = ({ classes }) => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Link to='/tasks/'>dsds</Link>
+          <Link to="/tasks/1">dsds</Link>
           <Link to='/'>
             <AccountCircle />
           </Link>

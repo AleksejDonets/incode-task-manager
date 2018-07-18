@@ -6,9 +6,9 @@ import { loadActiveTask } from '../../store/actions';
 
 class UserTasksPage extends Component {
   componentDidMount(){
-    const {  loadActiveTasks, id } = this.props;
-    
-    loadActiveTasks(id);
+    const {  loadActiveTasks, match } = this.props;
+    console.log(this.props)
+    loadActiveTasks(match.params.id);
 
 
     
@@ -28,10 +28,11 @@ class UserTasksPage extends Component {
 };
 
 const mapStateToProps = ({user}) => ({
-  id: user.profile.id,
+  id: user.profile,
+
 });
 
 const mapDispatchToProps = dispatch =>({
-  loadActiveTasks: (id) => dispatch(loadActiveTask(id))
+  loadActiveTasks: id => dispatch(loadActiveTask(id))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(UserTasksPage);

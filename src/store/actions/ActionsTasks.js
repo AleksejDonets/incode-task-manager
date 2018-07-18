@@ -13,7 +13,7 @@ export const loadTaskSuccess = (data)=>({
 
 export const loadTaskActive = (data) => ({
   type: LOAD_ACTIVE_TASK,
-  activeTask: data,
+  activeTask: data.data,
 });
 
 export function loadTasks() {
@@ -25,13 +25,9 @@ export function loadTasks() {
 };
 
 export function loadActiveTask (id) {
-  return function (dispatch) {
-    return axios.get('/tasks/',
-           {
-            "id": id
 
-           }
-          )
+  return function (dispatch) {
+    return axios.get(`/tasks/${id}`)
       .then(data => dispatch(loadTaskActive(data)))
   }
 
