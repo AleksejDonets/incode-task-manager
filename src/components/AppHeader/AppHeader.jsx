@@ -1,21 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import { AppBar, Toolbar, Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styles from './styles';
 
-const AppHeader = ({ classes }) => {
+const AppHeader = ({ classes, idUser }) => {
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Link to="/tasks/1">dsds</Link>
-          <Link to='/'>
-            <AccountCircle />
-          </Link>
+          <NavLink to='/' className={classes.noDecoration} >
+            <Button className={classes.navButton}>
+              Profile
+            </Button>
+          </NavLink>
+          <NavLink to={`/tasks?preferId=${idUser}`} className={classes.noDecoration}>
+            <Button className={classes.navButton}>
+              My Tasks
+            </Button> 
+          </NavLink>
+          <NavLink to='/tasks' className={classes.noDecoration}>
+            <Button className={classes.navButton}>
+              Board
+            </Button> 
+          </NavLink>
         </Toolbar>
       </AppBar>
     </div>

@@ -1,46 +1,47 @@
 {
   "user": {
     "id": "1",
-    "first_name": "Bob",
+    "first_name": "Bobй",
     "email": "das@fdfd.fds",
     "date_birth": "10.30.1981dsadsad",
-    "list_of_skils": "Database Administration"
+    "list_of_skils": "Database Administration",
+    "isAdmin": true
   },
   "tasks": [
     {
-      "id": 1,
+      "id": 1235,
       "title": "Some title",
-      "description": "",
-      "status": "In Progress",
-      "taskId": 1235
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer semper nunc ipsum, in ultrices nisl luctus et. Curabitur auctor vitae enim vehicula elementum. Sed tortor diam, fermentum aliquet cursus quis, imperdiet a nulla.",
+      "status": "Peer Review",
+      "preferId": 1
     },
     {
       "id": 343,
       "title": "Some title",
-      "description": "",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer semper nunc ipsum, in ultrices nisl luctus et. Curabitur auctor vitae enim vehicula elementum. Sed tortor diam, fermentum aliquet cursus quis, imperdiet a nulla.",
       "status": "To Do",
-      "taskId": 343
+      "preferId": 1
     },
     {
-      "id": 123423,
+      "id": 4322,
       "title": "Some title",
-      "description": "",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer semper nunc ipsum, in ultrices nisl luctus et. Curabitur auctor vitae enim vehicula elementum. Sed tortor diam, fermentum aliquet cursus quis, imperdiet a nulla.",
       "status": "Done",
-      "taskId": 4322
+      "preferId": 1
     },
     {
-      "id": 42341,
+      "id": 456,
       "title": "Some title",
-      "description": "",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer semper nunc ipsum, in ultrices nisl luctus et. Curabitur auctor vitae enim vehicula elementum. Sed tortor diam, fermentum aliquet cursus quis, imperdiet a nulla.",
       "status": "Done",
-      "taskId": 456
+      "preferId": 1
     },
     {
-      "id": 1,
+      "id": 3254,
       "title": "Some title",
-      "description": "",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer semper nunc ipsum, in ultrices nisl luctus et. Curabitur auctor vitae enim vehicula elementum. Sed tortor diam, fermentum aliquet cursus quis, imperdiet a nulla.",
       "status": "Peer Review",
-      "taskId": 3254
+      "preferId": 3254
     }
   ]
 }

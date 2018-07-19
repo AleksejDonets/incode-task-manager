@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import { loadUserFetch } from '../store/actions';
 import { loadTasks } from '../store/actions';
 import { AppHeader } from './AppHeader';
 import { ProfilePage } from './ProfilePage';
 import { UserTasksPage } from './UserTasksPage';
+import { BoardPage } from './Board';
 
 
 class App extends Component {
@@ -16,11 +17,15 @@ class App extends Component {
    
   }
   render(){
+    const { idUser } = this.props; 
     return (
       <div>
-        <AppHeader />
-        <Route exact path='/' component={ProfilePage}/>
-        <Route path='/tasks/:id' component={UserTasksPage} />
+        <AppHeader idUser={idUser}/>
+        <Switch>
+          <Route exact path='/' component={ProfilePage}/>
+          <Route path='/tasks/' component={BoardPage} />
+          <Route path='/tasks/user/:id' component={UserTasksPage} />
+        </Switch>
        
       </div>
     );
@@ -32,4 +37,8 @@ const mapDispatchToProps = dispatch => ({
   getTasks: () => dispatch(loadTasks()),
 });
 
-export default withRouter(connect(null, mapDispatchToProps)(App));
+const mapStateToProps = ({ user }) => ({
+  idUser: user.profile.id,
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
