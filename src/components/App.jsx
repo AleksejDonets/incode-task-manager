@@ -23,8 +23,8 @@ class App extends Component {
         <AppHeader idUser={idUser}/>
         <Switch>
           <Route exact path='/' component={ProfilePage}/>
-          <Route path='/tasks/' component={BoardPage} />
-          <Route path='/tasks/user/:id' component={UserTasksPage} />
+          <Route path='/board' component={BoardPage} />
+          <Route path='/tasks/:id' component={UserTasksPage} />
         </Switch>
        
       </div>

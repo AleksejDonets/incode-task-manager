@@ -7,7 +7,7 @@ export const loadTask = () => ({
 
 export const loadTaskSuccess = data => ({
   type: LOAD_TASK_SUCCESS,
-  tasks: data.data,
+  tasks: data,
   loadStatus: true,
 });
 
@@ -18,14 +18,14 @@ export const loadTaskActive = data => ({
 
 export const changeTaskStatus = data => ({
   type: CHANGE_TASK_STATUS,
-  data
+  data,
 });
 
 export function loadTasks() {
   return function (dispatch) {
     dispatch(loadTask());
     return axios.get('/tasks')
-      .then(data => dispatch(loadTaskSuccess(data)));
+      .then(data => dispatch(loadTaskSuccess(data.data)));
   };
 };
 
@@ -39,7 +39,7 @@ export function loadActiveTask (id) {
 export function changeStatusTask(id,statusTask) {
   return function (dispatch) {
     return axios.patch(`/tasks/${id}`, {"status": statusTask})
-      .then(data => dispatch(changeTaskStatus(data.data)))
+      .then(data => dispatch(changeTaskStatus(data)))
       
      
   }

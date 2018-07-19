@@ -12,14 +12,14 @@
       "id": 1235,
       "title": "Some title",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer semper nunc ipsum, in ultrices nisl luctus et. Curabitur auctor vitae enim vehicula elementum. Sed tortor diam, fermentum aliquet cursus quis, imperdiet a nulla.",
-      "status": "Peer Review",
+      "status": "Done",
       "preferId": 1
     },
     {
       "id": 343,
       "title": "Some title",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer semper nunc ipsum, in ultrices nisl luctus et. Curabitur auctor vitae enim vehicula elementum. Sed tortor diam, fermentum aliquet cursus quis, imperdiet a nulla.",
-      "status": "To Do",
+      "status": "Done",
       "preferId": 1
     },
     {
@@ -41,7 +41,35 @@
       "title": "Some title",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer semper nunc ipsum, in ultrices nisl luctus et. Curabitur auctor vitae enim vehicula elementum. Sed tortor diam, fermentum aliquet cursus quis, imperdiet a nulla.",
       "status": "Peer Review",
-      "preferId": 3254
+      "preferId": 3
+    },
+    {
+      "id": 987,
+      "title": "Some title",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer semper nunc ipsum, in ultrices nisl luctus et. Curabitur auctor vitae enim vehicula elementum. Sed tortor diam, fermentum aliquet cursus quis, imperdiet a nulla.",
+      "status": "Peer Review",
+      "preferId": 12
+    },
+    {
+      "id": 767,
+      "title": "Some title",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer semper nunc ipsum, in ultrices nisl luctus et. Curabitur auctor vitae enim vehicula elementum. Sed tortor diam, fermentum aliquet cursus quis, imperdiet a nulla.",
+      "status": "Peer Review",
+      "preferId": 4
+    },
+    {
+      "id": 43124,
+      "title": "Some title",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer semper nunc ipsum, in ultrices nisl luctus et. Curabitur auctor vitae enim vehicula elementum. Sed tortor diam, fermentum aliquet cursus quis, imperdiet a nulla.",
+      "status": "Peer Review",
+      "preferId": 1
+    },
+    {
+      "id": 3123,
+      "title": "Some title",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer semper nunc ipsum, in ultrices nisl luctus et. Curabitur auctor vitae enim vehicula elementum. Sed tortor diam, fermentum aliquet cursus quis, imperdiet a nulla.",
+      "status": "Peer Review",
+      "preferId": 2
     }
   ]
 }

@@ -15,12 +15,12 @@ const AppHeader = ({ classes, idUser }) => {
               Profile
             </Button>
           </NavLink>
-          <NavLink to={`/tasks?preferId=${idUser}`} className={classes.noDecoration}>
+          <NavLink to={`/tasks/${idUser}`} className={classes.noDecoration}>
             <Button className={classes.navButton}>
               My Tasks
             </Button> 
           </NavLink>
-          <NavLink to='/tasks' className={classes.noDecoration}>
+          <NavLink to='/board' className={classes.noDecoration}>
             <Button className={classes.navButton}>
               Board
             </Button> 

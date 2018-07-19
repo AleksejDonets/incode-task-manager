@@ -8,6 +8,7 @@ import styles from './styles';
 class UserTasksPage extends Component {
   componentDidMount() {
     const {  loadActiveTasks, match } = this.props;
+    console.log(match.params.id)
     loadActiveTasks(match.params.id);
   }
   render() {
