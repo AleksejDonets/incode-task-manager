@@ -16,11 +16,6 @@ class TaskItem extends Component {
     }
     this.handleChange  = this.handleChange.bind(this);
   }
-
-  componentDidMount(){
-    const { task } = this.props;
-  }
-
   handleChange(event){
     const { task, changeStatus } = this.props;
     const statusTask = event.target.value;
@@ -31,12 +26,6 @@ class TaskItem extends Component {
     });
     changeStatus(id, statusTask);
   }
-
-
-  renderTask(){
-     
-  }
-
   render(){
     const { classes, task, admin } = this.props;
      return (
@@ -67,9 +56,6 @@ class TaskItem extends Component {
       </ Card>
    
      )
-      
-    
-   
   }
   
 };

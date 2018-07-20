@@ -6,13 +6,14 @@ import { TaskItem } from '../TaskItem';
 import styles from './styles';
 
 class UserTasksPage extends Component {
+
+ 
   componentDidMount() {
-    const {  loadActiveTasks, match } = this.props;
-    console.log(match.params.id)
+    const { loadActiveTasks, match } = this.props;
     loadActiveTasks(match.params.id);
   }
   render() {
-    const {userTasks, classes, isAdmin} = this.props;
+    const {userTasks, isAdmin, classes } = this.props;
 
     return (
       <div className={classes.TaskContainer}>

@@ -12,7 +12,7 @@ const AppHeader = ({ classes, idUser }) => {
         <Toolbar>
           <NavLink to='/' className={classes.noDecoration} >
             <Button className={classes.navButton}>
-              Profile
+              Board
             </Button>
           </NavLink>
           <NavLink to={`/tasks/${idUser}`} className={classes.noDecoration}>
@@ -20,9 +20,9 @@ const AppHeader = ({ classes, idUser }) => {
               My Tasks
             </Button> 
           </NavLink>
-          <NavLink to='/board' className={classes.noDecoration}>
+          <NavLink to='/profile' className={classes.noDecoration}>
             <Button className={classes.navButton}>
-              Board
+              Profile
             </Button> 
           </NavLink>
         </Toolbar>
