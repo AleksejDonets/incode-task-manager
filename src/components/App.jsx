@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
 import { loadUserFetch } from '../store/actions';
 import { AppHeader } from './AppHeader';
 import { ProfilePage } from './ProfilePage';
@@ -9,6 +10,10 @@ import { BoardPage } from './Board';
 
 
 class App extends Component {
+
+  static propTypes = {
+    getUser: PropTypes.func.isRequired,
+  }
   componentDidMount() {
     const { getUser } = this.props;
     getUser();

@@ -1,4 +1,3 @@
-
 import { UPDATE_USER_SUCCESS, LOAD_USER_SUCCESS } from '../actions/ActionTypes';
 
 const initialState = {
@@ -15,5 +14,4 @@ export default (state = initialState, action) => {
     default:
       return state;
   }
-
 };

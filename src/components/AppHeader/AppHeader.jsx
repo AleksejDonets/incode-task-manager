@@ -10,7 +10,7 @@ const AppHeader = ({ classes, idUser }) => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <NavLink to='/' className={classes.noDecoration} >
+          <NavLink to="/" className={classes.noDecoration}>
             <Button className={classes.navButton}>
               Board
             </Button>
@@ -18,12 +18,12 @@ const AppHeader = ({ classes, idUser }) => {
           <NavLink to={`/tasks/${idUser}`} className={classes.noDecoration}>
             <Button className={classes.navButton}>
               My Tasks
-            </Button> 
+            </Button>
           </NavLink>
-          <NavLink to='/profile' className={classes.noDecoration}>
+          <NavLink to="/profile" className={classes.noDecoration}>
             <Button className={classes.navButton}>
               Profile
-            </Button> 
+            </Button>
           </NavLink>
         </Toolbar>
       </AppBar>
@@ -33,6 +33,7 @@ const AppHeader = ({ classes, idUser }) => {
 
 AppHeader.propTypes = {
   classes: PropTypes.object.isRequired,
+  idUser: PropTypes.string,
 };
 
 export default withStyles(styles)(AppHeader);

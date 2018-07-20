@@ -12,14 +12,14 @@
       "id": 1235,
       "title": "Some title",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer semper nunc ipsum, in ultrices nisl luctus et. Curabitur auctor vitae enim vehicula elementum. Sed tortor diam, fermentum aliquet cursus quis, imperdiet a nulla.",
-      "status": "Peer Review",
+      "status": "To Do",
       "preferId": 1
     },
     {
       "id": 343,
       "title": "Some title",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer semper nunc ipsum, in ultrices nisl luctus et. Curabitur auctor vitae enim vehicula elementum. Sed tortor diam, fermentum aliquet cursus quis, imperdiet a nulla.",
-      "status": "Done",
+      "status": "In Progress",
       "preferId": 1
     },
     {
@@ -33,7 +33,7 @@
       "id": 456,
       "title": "Some title",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer semper nunc ipsum, in ultrices nisl luctus et. Curabitur auctor vitae enim vehicula elementum. Sed tortor diam, fermentum aliquet cursus quis, imperdiet a nulla.",
-      "status": "Done",
+      "status": "In Progress",
       "preferId": 1
     },
     {

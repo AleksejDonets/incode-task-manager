@@ -1,9 +1,9 @@
-import { LOAD_TASK, LOAD_TASK_SUCCESS }  from '../actions/ActionTypes';
+import { LOAD_TASK, LOAD_TASK_SUCCESS } from '../actions/ActionTypes';
 
 const initialState = {
   tasks: [],
   users: [],
-}
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -12,4 +12,4 @@ export default (state = initialState, action) => {
     default:
       return state;
   }
-}
+};

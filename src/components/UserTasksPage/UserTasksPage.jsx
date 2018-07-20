@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { loadActiveTask } from '../../store/actions';
 import { TaskItem } from '../TaskItem';
 import styles from './styles';
 
 class UserTasksPage extends Component {
-
- 
   componentDidMount() {
     const { loadActiveTasks, match } = this.props;
     loadActiveTasks(match.params.id);
   }
+
   render() {
     const {userTasks, isAdmin, classes } = this.props;
-
+    
     return (
       <div className={classes.TaskContainer}>
       {
