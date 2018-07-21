@@ -9,7 +9,7 @@ import { CustomInput } from '../CustomInput';
 import validate from '../../utils/validate';
 import styles from './styles';
 
-const EditCardUser = ({ handleSubmit, classes, onSubmitHandler }) => {
+const EditUserCard = ({ handleSubmit, classes, onSubmitHandler }) => {
   return (
     <form onSubmit={handleSubmit(onSubmitHandler)}>
       <Card className={classes.editForm}>
@@ -56,4 +56,4 @@ export default reduxForm({
   form: 'editForm',
   validate,
   enableReinitialize: true,
-})(withStyles(styles)(EditCardUser));
+})(withStyles(styles)(EditUserCard));

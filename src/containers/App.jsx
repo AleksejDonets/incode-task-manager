@@ -3,33 +3,32 @@ import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { loadUserFetch } from '../store/actions';
-import { AppHeader } from './AppHeader';
+import { AppHeader } from '../components/AppHeader';
 import { ProfilePage } from './ProfilePage';
 import { UserTasksPage } from './UserTasksPage';
-import { BoardPage } from './Board';
+import { BoardPage } from './BoardPage';
 
 
 class App extends Component {
-
   static propTypes = {
     getUser: PropTypes.func.isRequired,
   }
+
   componentDidMount() {
     const { getUser } = this.props;
     getUser();
-   
   }
-  render(){
-    const { idUser } = this.props; 
+
+  render() {
+    const { idUser } = this.props;
     return (
       <div>
-        <AppHeader idUser={idUser}/>
+        <AppHeader idUser={idUser} />
         <Switch>
-          <Route exact path='/profile' component={ProfilePage}/>
-          <Route exact path='/' component={BoardPage} />
-          <Route path='/tasks/:id' component={UserTasksPage} />
+          <Route exact path="/profile" component={ProfilePage} />
+          <Route exact path="/" component={BoardPage} />
+          <Route path="/tasks/:id" component={UserTasksPage} />
         </Switch>
-       
       </div>
     );
   }

@@ -23,6 +23,7 @@ export function changeStatusTask(id,statusTask) {
   return function (dispatch) {
     return axios.patch(`/tasks/${id}`, {"status": statusTask})
       .then(data => dispatch(changeTaskStatus(data)))
+      .then( () => dispatch(loadTaskActive))
   }
 }
 

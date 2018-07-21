@@ -1,6 +1,6 @@
+/* eslint linebreak-style: ["error", "windows"] */
 const styles = {
-
-  TaskContainer:{
+  TaskContainer: {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',

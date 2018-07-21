@@ -3,7 +3,7 @@ import { Select, MenuItem } from '@material-ui/core';
 
 const statusList = ['To Do', 'In Progress', 'Peer Review', 'Done'];
 
-const TaskItemStatus = ({ task, handleChange, admin  }) => {
+const TaskStatus = ({ task, handleChange, admin  }) => {
   return (
     <Select
       value = { this.state.status }
@@ -19,3 +19,5 @@ const TaskItemStatus = ({ task, handleChange, admin  }) => {
     </Select>
   )
 }
+
+export default TaskStatus;

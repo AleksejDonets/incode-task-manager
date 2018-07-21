@@ -1,6 +1,12 @@
 {
-  "extends": [
-    "airbnb"
-  ]
+  "extends": "airbnb",
+  "rules": {
+    "implicit-arrow-linebreak": "off",
+    "import/prefer-default-export": "off",
+    "react/prop-types": "off",
+    "eslint linebreak-style": ["error", "windows"]
+  },
+  "parser": "babel-eslint"
+  
    
 }

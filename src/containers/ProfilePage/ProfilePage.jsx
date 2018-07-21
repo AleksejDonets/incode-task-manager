@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { editUserSucces } from '../../store/actions';
-import UserCard from './UserCard';
-import EditCardUser from './EditUserCard';
+import {UserCard } from '../../components/UserCard';
+import { EditUserCard }  from '../../components/EditUserCard';
 
 class ProfilePage extends Component {
   constructor(props) {
@@ -35,7 +35,7 @@ class ProfilePage extends Component {
     const { edit } = this.state;
     if (edit) {
       return (
-        <EditCardUser initialValues={user} onSubmitHandler={(values) => {this.saveUser(values)}}/>
+        <EditUserCard initialValues={user} onSubmitHandler={(values) => {this.saveUser(values)}} />
       );
     }
     return (
