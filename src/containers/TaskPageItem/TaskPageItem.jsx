@@ -24,11 +24,12 @@ class TaskPageItem extends Component {
 
 
   addComment({ text }) {
-    const { sendComment, userId, taskId, comments } = this.props;
+    const { sendComment, userId, taskId, comments, userName } = this.props;
     sendComment(taskId,[
       ...comments
       ,{
-        author: userId,
+        id: userId,
+        author: userName,
         text,
         createdAt: new Date()
       },
@@ -64,6 +65,7 @@ class TaskPageItem extends Component {
 const mapStateToPops = ({user, selectedTask }) => ({
   isAdmin: user.isAdmin,
   userId: user.profile.id,
+  userName: user.profile.first_name,
   taskId: selectedTask.activeTask.id,
   comments: selectedTask.activeTask.comments,
 })

@@ -26,38 +26,13 @@
           "id": 15,
           "author": "Doe",
           "text": "Hah",
-          "createdAt": "02:15:11"
+          "createdAt": "02:11:11"
         },
         {
           "id": 4245,
           "author": "John Doe",
           "text": "What did you say about my comment?",
-          "createdAt": "02:51:11"
-        },
-        {
-          "author": "1",
-          "text": "fdsfsgf",
-          "createdAt": "2018-07-23T00:52:08.086Z"
-        },
-        {
-          "author": "1",
-          "text": "gfdgfd",
-          "createdAt": "2018-07-23T00:56:19.625Z"
-        },
-        {
-          "author": "1",
-          "text": "dasdasfasf",
-          "createdAt": "2018-07-23T00:59:27.801Z"
-        },
-        {
-          "author": "1",
-          "text": "fafasf",
-          "createdAt": "2018-07-23T00:59:30.389Z"
-        },
-        {
-          "author": "1",
-          "text": "efdsfdsf",
-          "createdAt": "2018-07-23T00:59:33.126Z"
+          "createdAt": "02:34:11"
         }
       ]
     },
@@ -66,7 +41,7 @@
       "title": "Some title",
       "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer semper nunc ipsum, in ultrices nisl luctus et.",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer semper nunc ipsum, in ultrices nisl luctus et. Curabitur auctor vitae enim vehicula elementum. Sed tortor diam, fermentum aliquet cursus quis, imperdiet a nulla.",
-      "status": "In Progress",
+      "status": "Peer Review",
       "preferId": 1,
       "comments": [
         {
@@ -85,7 +60,7 @@
           "id": 4245,
           "author": "John Doe",
           "text": "What did you say about my comment?",
-          "createdAt": "02:11:11"
+          "createdAt": "02:34:11"
         }
       ]
     },
@@ -107,7 +82,7 @@
           "id": 15,
           "author": "Doe",
           "text": "Hah",
-          "createdAt": "02:11:11"
+          "createdAt": "02:23:11"
         },
         {
           "id": 4245,
@@ -135,7 +110,7 @@
           "id": 15,
           "author": "Doe",
           "text": "Hah",
-          "createdAt": "02:11:11"
+          "createdAt": "02:13:11"
         },
         {
           "id": 4245,
@@ -163,7 +138,7 @@
           "id": 15,
           "author": "Doe",
           "text": "Hah",
-          "createdAt": "02:11:11"
+          "createdAt": "02:31:11"
         },
         {
           "id": 4245,
@@ -191,7 +166,7 @@
           "id": 15,
           "author": "Doe",
           "text": "Hah",
-          "createdAt": "02:11:11"
+          "createdAt": "02:54:11"
         },
         {
           "id": 4245,
@@ -219,7 +194,7 @@
           "id": 15,
           "author": "Doe",
           "text": "Hah",
-          "createdAt": "02:11:11"
+          "createdAt": "02:12:11"
         },
         {
           "id": 4245,
@@ -247,7 +222,7 @@
           "id": 15,
           "author": "Doe",
           "text": "Hah",
-          "createdAt": "02:11:11"
+          "createdAt": "02:22:11"
         },
         {
           "id": 4245,
@@ -275,7 +250,7 @@
           "id": 15,
           "author": "Doe",
           "text": "Hah",
-          "createdAt": "02:11:11"
+          "createdAt": "02:24:11"
         },
         {
           "id": 4245,
