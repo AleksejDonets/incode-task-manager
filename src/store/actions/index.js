@@ -1,6 +1,7 @@
 export { loadUserFetch } from './ActionsUser';
 export { editUserSucces } from './ActionsUser';
-export { loadTasks } from './ActionsBoard';
-export { loadActiveTask } from './ActionsTasks';
+export { loadAllTasks } from './ActionsBoard';
+export { loadUserTask } from './ActionsTasks';
 export { changeStatusTask } from './ActionsTasks';
-
+export { loadTaskSelected } from './ActionTaskPage';
+export { commentAdd } from './ActionTaskPage'; 

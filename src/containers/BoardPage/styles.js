@@ -1,11 +1,10 @@
-/* eslint linebreak-style: ["error", "windows"] */
 const styles = {
   TaskContainer: {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
     maxWidth: '90%',
-    margin: '25px auto',
+    margin: '50px auto',
   },
   title: {
     maxWidth: '89%',

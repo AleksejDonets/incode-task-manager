@@ -1,14 +1,14 @@
-import { LOAD_ACTIVE_TASK } from '../actions/ActionTypes';
+import { LOAD_USER_TASK_SUCCESS } from '../actions/ActionTypes';
 
 const initialState = {
-  activeTask: [],
+  userTask: [],
   loadStatus: false,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case LOAD_ACTIVE_TASK:
-      return Object.assign({}, state, { activeTask: action.activeTask });
+    case LOAD_USER_TASK_SUCCESS:
+      return Object.assign({}, state, { userTask: action.userTask, loadStatus: action.loadStatus});
     default:
       return state;
   }

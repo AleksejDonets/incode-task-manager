@@ -15,7 +15,7 @@ const AppHeader = ({ classes, idUser }) => {
               Board
             </Button>
           </NavLink>
-          <NavLink to={`/tasks/${idUser}`} className={classes.noDecoration}>
+          <NavLink to={`/user-tasks/${idUser}`} className={classes.noDecoration}>
             <Button className={classes.navButton}>
               My Tasks
             </Button>

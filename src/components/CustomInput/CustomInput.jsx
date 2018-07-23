@@ -6,7 +6,6 @@ const CustomInput = ({ className, input , meta: {touched, error}}) => {
     <div>
       <TextField
         className={className}
-        multiline
         helperText={touched && error}
         error={error && touched}
         {...input}

@@ -6,13 +6,16 @@ import {UserCard } from '../../components/UserCard';
 import { EditUserCard }  from '../../components/EditUserCard';
 
 class ProfilePage extends Component {
+  static defaultProps = {
+    user: PropTypes.obj,
+    saveEditUser: PropTypes.func,
+  }
+
   constructor(props) {
     super(props);
-
     this.state = {
       edit: false,
     };
-
     this.saveUser = this.saveUser.bind(this);
     this.toggleEditStatus = this.toggleEditStatus.bind(this);
   }
@@ -25,7 +28,6 @@ class ProfilePage extends Component {
 
   saveUser(user) {   
     const { saveEditUser } = this.props;
-
     saveEditUser(user);
     this.toggleEditStatus();
   }

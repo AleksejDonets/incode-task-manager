@@ -7,8 +7,7 @@ import { AppHeader } from '../components/AppHeader';
 import { ProfilePage } from './ProfilePage';
 import { UserTasksPage } from './UserTasksPage';
 import { BoardPage } from './BoardPage';
-
-
+import { TaskPage } from './TaskPage';
 class App extends Component {
   static propTypes = {
     getUser: PropTypes.func.isRequired,
@@ -25,9 +24,10 @@ class App extends Component {
       <div>
         <AppHeader idUser={idUser} />
         <Switch>
-          <Route exact path="/profile" component={ProfilePage} />
+          <Route path="/profile" component={ProfilePage} />
+          <Route path="/user-tasks/:id" component={UserTasksPage} />
           <Route exact path="/" component={BoardPage} />
-          <Route path="/tasks/:id" component={UserTasksPage} />
+          <Route path="/tasks/task/:id" component={TaskPage} />
         </Switch>
       </div>
     );

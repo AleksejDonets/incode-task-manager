@@ -1,16 +1,22 @@
 import axios from '../../axios';
-import { LOAD_TASK, LOAD_TASK_SUCCESS } from './ActionTypes';
+import { LOAD_ALL_TASK, LOAD_ALL_TASK_SUCCESS, LOAD_ALL_TASK_ERROR } from './ActionTypes';
 
 export const loadTask = () => ({
-  type: LOAD_TASK,
+  type: LOAD_ALL_TASK,
+  isLoading: false,
 });
 
 export const loadTaskSuccess = data => ({
-  type: LOAD_TASK_SUCCESS,
+  type: LOAD_ALL_TASK_SUCCESS,
   tasks: data,
+  isLoading: true,
 });
 
-export function loadTasks() {
+export const loadAllTaskError = error => ({
+  type:LOAD_ALL_TASK_ERROR,
+  error
+})
+export function loadAllTasks() {
   return function (dispatch) {
     dispatch(loadTask());
     return axios.get('/tasks')

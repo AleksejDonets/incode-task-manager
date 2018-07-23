@@ -1,17 +1,13 @@
 const styles = {
-  card: {
-    maxWidth: 600,
-    margin: '50px auto',
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%',
+  content: {
+    width: '60%',
+    margin: '0 auto',
   },
   info: {
     flexGrow: 1,
   },
-  bold: {
-    fontWeight: 'bold',
+  field: {
+    width: '100%',  
   },
   alItem: {
     justifyContent: 'flex-end',

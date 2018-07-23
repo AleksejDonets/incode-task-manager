@@ -1,12 +1,15 @@
 const styles = {
   default: {
     maxWidth: '500px',
-    widht: 'auto',
+    width: 'auto',
     margin: '15px', 
   },
   cardLink: {
+    display: 'block',
     textDecoration: 'none',
-    display: 'flex',
+    marginTop:'15px',
+    marginBottom: '15px',
+
   }
 }
 export default styles;
