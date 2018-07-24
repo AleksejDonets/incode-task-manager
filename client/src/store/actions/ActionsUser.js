@@ -9,7 +9,8 @@ import {
   LOGIN_USER_ERROR,
 } from './ActionTypes';
 
-/*Load and Update User Action's */
+/* Load and Update User Action's */
+
 export const loadUser = () => ({
   type: LOAD_USER,
 });
@@ -44,25 +45,27 @@ export function loadUserFetch() {
   };
 }
 
-/*LogIn User Action's*/
+/* LogIn User Action's */
 
 const logIn = () => ({
   type: LOGIN_USER,
 });
 
-const logInSuccess = () => ({
+const logInSuccess = (data) => ({
   type: LOGIN_USER_SUCCESS,
+  
 });
 
 const logInError = () => ({
   type: LOGIN_USER_ERROR,
 })
 
-export function logInUser({data}) {
+export function logInUser({login, password}) {
   return dispatch => {
     dispatch(logIn());
-    axios.post('/login', {})
-    .then(() => dispatch(logInSuccess()))
-    .catch(error=>dispatch(logInError(error)))
+
+    axios.post('/login', {'login':login,'password': password})
+    .then(response => console.log(response))
+    .catch(error => console.log(error.message))
   }
 }

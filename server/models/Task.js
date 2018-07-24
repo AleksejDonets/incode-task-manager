@@ -6,7 +6,6 @@ const TaskSchema = new Schema({
   description: String,
   status: {
     type: String,
-    default: stages[0]
   },
   estimateTime: String,
   creator: { type: Schema.Types.ObjectId, ref: "User" },
