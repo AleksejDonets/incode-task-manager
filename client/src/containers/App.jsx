@@ -9,7 +9,7 @@ import { UserTasksPage } from './UserTasksPage';
 import { BoardPage } from './BoardPage';
 import { TaskPage } from './TaskPage';
 import { LoginPage } from './ LoginPage';
-
+import { SignPage } from './SignPage';
 class App extends Component {
   static propTypes = {
     getUser: PropTypes.func.isRequired,
@@ -27,6 +27,7 @@ class App extends Component {
         <AppHeader idUser={idUser} />
         <Switch>
           <Route path="/login" component={LoginPage} />
+          <Route path="/signup" component={SignPage} />
           <Route path="/profile" component={ProfilePage} />
           <Route path="/user-tasks/:id" component={UserTasksPage} />
           <Route exact path="/" component={BoardPage} />
