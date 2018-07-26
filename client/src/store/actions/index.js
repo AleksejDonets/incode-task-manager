@@ -7,3 +7,4 @@ export { loadUserTask } from './ActionsTasks';
 export { changeStatusTask } from './ActionsTasks';
 export { loadTaskSelected } from './ActionTaskPage';
 export { commentAdd } from './ActionTaskPage'; 
+export { verifyUser } from './ActionsUser';

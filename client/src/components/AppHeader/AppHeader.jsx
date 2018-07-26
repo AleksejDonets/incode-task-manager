@@ -3,32 +3,63 @@ import PropTypes from 'prop-types';
 import { AppBar, Toolbar, Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { NavLink } from 'react-router-dom';
+import { PersonAdd } from '@material-ui/icons';
 import styles from './styles';
 
-const AppHeader = ({ classes, idUser }) => {
+const AppHeader = ({ classes, idUser, status }) => {
+  if(status){
+    console.log(status)
+    return (
+      <div className={classes.root}>
+        <AppBar position="static">
+          <Toolbar>
+            <NavLink to="/" className={classes.noDecoration}>
+              <Button className={classes.navButton}>
+                Board
+               
+              </Button>
+            </NavLink>
+            <NavLink to={`/user-tasks/${idUser}`} className={classes.noDecoration}>
+              <Button className={classes.navButton}>
+                My Tasks
+              </Button>
+            </NavLink>
+            <NavLink to="/profile" className={classes.noDecoration}>
+              <Button className={classes.navButton}>
+                Profile
+              </Button>
+            </NavLink>
+            <NavLink to="/logout" className={classes.noDecoration}>
+              <Button className={classes.navButton}>
+                Logout
+              </Button>
+            </NavLink>
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
+  }
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <NavLink to="/" className={classes.noDecoration}>
+          <NavLink to="/login" className={classes.noDecoration}>
             <Button className={classes.navButton}>
-              Board
+               LogIn
             </Button>
           </NavLink>
-          <NavLink to={`/user-tasks/${idUser}`} className={classes.noDecoration}>
+          <NavLink to="/signup" className={classes.noDecoration}>
             <Button className={classes.navButton}>
-              My Tasks
+              <PersonAdd /> 
+              Register
             </Button>
           </NavLink>
-          <NavLink to="/profile" className={classes.noDecoration}>
-            <Button className={classes.navButton}>
-              Profile
-            </Button>
-          </NavLink>
-        </Toolbar>
+         </ Toolbar> 
       </AppBar>
     </div>
-  );
+  )
+
+  
 };
 
 AppHeader.propTypes = {

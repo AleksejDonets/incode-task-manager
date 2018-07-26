@@ -3,12 +3,24 @@ const jwt = require("jsonwebtoken");
 const jwtSecret = require("../config/info");
 
 module.exports = {
-  login(req, res) {
+  checkUser(req, res) {
+    passport.authenticate('jwt', { session: false }, (err, user, info) => {
+      if (err) {
+        return res.status(500).send(err);
+      }
+      if (info) {
+        return res.status(401).send({
+          errors: [info]
+        });
+      }
+      return res.status(200).json({ isLoad: true, activeUser: user });
+    })(req, res);
+  },
+  login(req, res, next) {
     passport.authenticate(
       'login',
       { session: false },
       (err, user, info) => {
-
         if (err) {
           return res.status(500).send(err);
         }
@@ -21,12 +33,17 @@ module.exports = {
           if (loginError) {
             return res.status(500).send(loginError);
           }
-          const token = jwt.sign(user.id, jwtSecret.secretOrKey);
+          const payload = {
+            id: user.id,
+            email: user.email
+          }
+          const token = jwt.sign(payload, jwtSecret.secretOrKey);
           return res.send({ user, token });
         });
       }
-    )(req, res);
+    )(req, res, next);
   },
+
   signUp(req, res) {
     passport.authenticate(
       'sign',

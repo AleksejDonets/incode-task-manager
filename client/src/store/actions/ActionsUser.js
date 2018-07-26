@@ -37,6 +37,7 @@ export function editUserSucces(user) {
   return function (dispatch) {
     dispatch(editUser());
     dispatch(editUserSuccess(user));
+    console.log(user);
     return axios.put('./user', user);
   };
 }
@@ -59,7 +60,7 @@ const logIn = () => ({
 
 const logInSuccess = (data) => ({
   type: LOGIN_USER_SUCCESS,
-  status:true,
+  isLogged: true,
   profile: data
   
 });
@@ -101,9 +102,20 @@ const signError = (error) => ({
 export function signUser(data) {
   return dispatch => {
     dispatch(signIn());
-    console.log(data)
     axios.post('/signup', data)
     .then(response => console.log(response))
     .catch(error => console.log(error.message))
+  }
+}
+
+
+
+export function verifyUser() {
+  return dispatch => {
+    axios.get('/verify')
+    .then(response =>{
+      const { activeUser } = response.data;
+      dispatch(logInSuccess(activeUser))
+    })
   }
 }

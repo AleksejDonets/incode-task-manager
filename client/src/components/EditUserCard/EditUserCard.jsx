@@ -2,7 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { withStyles } from '@material-ui/core/styles';
 import { Card, Typography, CardActions, Button, CardContent } from '@material-ui/core';
-import { CustomInput } from '../CustomInput';
+import { CustomInput, DatePicker } from '../CustomInput';
 import validate from '../../utils/validate';
 import styles from './styles';
 
@@ -13,10 +13,11 @@ const EditUserCard = ({ handleSubmit, classes, onSubmitHandler }) => {
         <CardContent className={classes.content}>
           <Typography component="div">
             <Field
-              name="first_name"
+              name="name"
               component={CustomInput}
               type="text"
               className={classes.field}
+              label="Name"
             />
           </Typography>
           <Typography component="div">
@@ -25,14 +26,16 @@ const EditUserCard = ({ handleSubmit, classes, onSubmitHandler }) => {
               component={CustomInput}
               type="text"
               className={classes.field}
+              label="Email"
             />
           </Typography>
           <Typography component="div">
             <Field
-              name="date_birth"
-              component={CustomInput}
+              name="birth"
+              component={DatePicker}
               type="text"
               className={classes.field}
+              label="Birth Date"
             />
           </Typography>
           <Typography component="div">
@@ -41,6 +44,7 @@ const EditUserCard = ({ handleSubmit, classes, onSubmitHandler }) => {
               component={CustomInput}
               type="text"
               className={classes.field}
+              label="List Skils"
             />
           </Typography>
         </CardContent>

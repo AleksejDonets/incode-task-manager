@@ -13,6 +13,7 @@ const styles = {
   },
   fields: {
     textAlign: 'left',
+    borderBottom: '.01em solid #000',
   },
   content: {
     width: '60%',
@@ -21,6 +22,10 @@ const styles = {
   alItem: {
     justifyContent: 'flex-end',
   },
+  span: {
+    display: 'inline-block',
+    fontSize: '.2em',
+  }
 };
 
 export default styles;

@@ -1,12 +1,9 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const JwtStrategy = require('passport-jwt').Strategy;
-const ExtractJwt = require('passport-jwt').ExtractJwt;
+const JWTstrategy = require('passport-jwt').Strategy;
+const ExtractJWT = require('passport-jwt').ExtractJwt;
 const User = require('../models/User');
 const info = require('./info');
-const options = {};
-options.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-options.secretOrKey = info.secretOrKey;
 
 passport.use(
   'login',
@@ -16,23 +13,23 @@ passport.use(
       passwordField: 'password'
     },
     (login, password, done) => {
-      User.findOne({ email: login }, function(err, user) {
-      
-          if (err) { return done(err); }
+      User.findOne(
+        
+        { $or: [{ email: login }, {name: login}] }, 
+        function(err, user) {
+       
+          if (err) { 
+            return done(err); 
+          }
           if (!user) {
             return done(null, false, { message: 'No user found' });
           }
           if (!user.validPassword(password)) {
-            return done(null, false, { message: 'Wrong password' });
+              return done(null, false, { message: 'Wrong password' });
           }
-          
           return done(null, user);
-
-      })
-     
-
-        
-     
+        }
+      )
     }
   )
 );
@@ -45,6 +42,7 @@ passport.use(
       passReqToCallback: true
     },
     (req, email, password, done) => {
+      
       User.findOne({ email }, function(user){
         if(user) {
           return done(null, false, { message: 'User with this email already exists' });
@@ -64,16 +62,22 @@ passport.use(
 
 
 
-passport.use(new JwtStrategy(options, function(jwt_payload, done) {
-  User.findOne({id: jwt_payload}, function(err, user) {
-      if (err) {
-          return done(err, false);
-      }
-      if (user) {
-          return done(null, user);
-      } else {
+passport.use(
+  new JWTstrategy(
+    {
+      jwtFromRequest: ExtractJWT.fromAuthHeaderWithScheme('Bearer'),
+      secretOrKey: info.secretOrKey
+    },
+    (jwtPayload, done) => {
+      console.log(jwtPayload)
+      User.findOne({ _id: jwtPayload.id })
+        .then((user) => {
+          if (user) {
+            return done(null, user);
+          }
           return done(null, false);
-          // or you could create a new account
-      }
-  });
-}));
+        })
+        .catch(err => console.log(err));
+    }
+  )
+);
