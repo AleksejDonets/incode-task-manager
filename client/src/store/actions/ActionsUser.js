@@ -37,8 +37,7 @@ export function editUserSucces(user) {
   return function (dispatch) {
     dispatch(editUser());
     dispatch(editUserSuccess(user));
-    console.log(user);
-    return axios.put('./user', user);
+    return axios.put('/user', user);
   };
 }
 
@@ -79,7 +78,11 @@ export function logInUser({login, password}) {
       localStorage.setItem('token', token);
       dispatch(logInSuccess(user));
      })
-    .catch(error => console.log(error.message))
+    .catch(error => {
+      dispatch(logInError());
+
+      console.log(error);
+    });
   }
 }
 

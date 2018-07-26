@@ -1,6 +1,8 @@
+const mongoose = require("mongoose");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const jwtSecret = require("../config/info");
+const User = require('../models/User');
 
 module.exports = {
   checkUser(req, res) {
@@ -19,7 +21,10 @@ module.exports = {
   login(req, res, next) {
     passport.authenticate(
       'login',
-      { session: false },
+      { 
+        session: false,
+        
+      },
       (err, user, info) => {
         if (err) {
           return res.status(500).send(err);
@@ -43,7 +48,6 @@ module.exports = {
       }
     )(req, res, next);
   },
-
   signUp(req, res) {
     passport.authenticate(
       'sign',
@@ -67,5 +71,24 @@ module.exports = {
         });
       }
     )(req, res);
+  },
+  async editUser(req, res) {
+    try {
+      const updatedUser = await User.findOneAndUpdate(
+        {
+          _id: req.user.id
+        },
+        {
+          $set: { ...req.body}
+          
+        },
+        {
+          new: false
+        }
+      );
+      res.send(updatedUser);
+    } catch (e) {
+      res.status(500).send(e);
+    }
   },
 }

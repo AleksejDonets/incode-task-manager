@@ -30,7 +30,6 @@ class ProfilePage extends Component {
   saveUser(user) {
     const { saveEditUser } = this.props;
     saveEditUser(user);
-    console.log(user);
     this.toggleEditStatus();
   }
 

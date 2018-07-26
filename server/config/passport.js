@@ -10,11 +10,10 @@ passport.use(
   new LocalStrategy(
     {
       usernameField: 'login',
-      passwordField: 'password'
+      passwordField: 'password',
     },
-    (login, password, done) => {
+    ( login, password, done) => {
       User.findOne(
-        
         { $or: [{ email: login }, {name: login}] }, 
         function(err, user) {
        
@@ -69,7 +68,6 @@ passport.use(
       secretOrKey: info.secretOrKey
     },
     (jwtPayload, done) => {
-      console.log(jwtPayload)
       User.findOne({ _id: jwtPayload.id })
         .then((user) => {
           if (user) {

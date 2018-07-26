@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Card, CardActions, CardContent, IconButton , Typography, InputLabel, FormHelperText } from '@material-ui/core';
+import { Card, CardActions, CardContent, IconButton , Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { Edit } from '@material-ui/icons';
 import styles from './styles';
@@ -14,12 +14,15 @@ const UserCard = ({ classes, user, toggleEdit }) => {
             {user.name}
           </Typography>
           <Typography component="p" variant="subheading" className={classes.fields}>
-            <Typography component="span" variant="secondary" lassName={classes.span}>
-              Email: 
+            <Typography component="span" variant="caption" className={classes.span}>
+              User Email:
             </Typography > 
             {user.email}
           </Typography>
           <Typography component="p" variant="subheading" className={classes.fields}>
+            <Typography component="span" variant="caption" className={classes.span}>
+              Date Birth:
+            </Typography > 
             {user.birth}
           </Typography>
           <Typography component="p" variant="subheading" className={classes.fields}>

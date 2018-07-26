@@ -5,13 +5,16 @@ const Schema = mongoose.Schema;
 const UserSchema =  new Schema({
   name: String,
   email: String,
-  birth: Date,
+  birth: String,
   password: String,
   isAdmin: {
     type: Boolean,
     default: false
+  },
+  listSkils: {
+    type: Array,
+    default: []
   }
-
 });
 
 UserSchema.methods.encryptPassword = function(password) {

@@ -24,7 +24,7 @@ const styles = {
   },
   span: {
     display: 'inline-block',
-    fontSize: '.2em',
+    fontSize: '1em',
   }
 };
 

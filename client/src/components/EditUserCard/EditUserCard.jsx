@@ -40,7 +40,7 @@ const EditUserCard = ({ handleSubmit, classes, onSubmitHandler }) => {
           </Typography>
           <Typography component="div">
             <Field
-              name="list_of_skils"
+              name="listSkils"
               component={CustomInput}
               type="text"
               className={classes.field}
@@ -55,7 +55,6 @@ const EditUserCard = ({ handleSubmit, classes, onSubmitHandler }) => {
         </CardActions>
       </Card>
     </form>
-
   );
 };
 
