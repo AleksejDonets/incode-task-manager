@@ -3,6 +3,9 @@ import axios from '../../axios';
 import {
   LOAD_USER,
   LOAD_USER_SUCCESS,
+  LOAD_ALL_USER,
+  LOAD_ALL_USER_SUCCESS,
+  LOAD_ALL_USER_ERROR,
   UPDATE_USER,
   UPDATE_USER_SUCCESS,
   LOGIN_USER,
@@ -11,19 +14,10 @@ import {
   SIGN_USER,
   SIGN_USER_SUCCESS,
   SIGN_USER_ERROR,
+  LOG_OUT,
 } from './ActionTypes';
 
-/* Load and Update User Action's */
-
-export const loadUser = () => ({
-  type: LOAD_USER,
-});
-
-export const loadUserSuccess = data => ({
-  type: LOAD_USER_SUCCESS,
-  profile: data.data,
-});
-
+/* Edit User info */
 export const editUserSuccess = user => ({
   type: UPDATE_USER_SUCCESS,
   user,
@@ -40,14 +34,55 @@ export function editUserSucces(user) {
     return axios.put('/user', user);
   };
 }
+/* END Edit User info */
+
+/* Load all users */
+
+const loadUsers = () => ({
+  type:LOAD_ALL_USER,
+  status: false
+});
+const loadUsersSuccess = data => ({
+  type: LOAD_ALL_USER_SUCCESS,
+  load: true,
+  users: data
+});
+
+const loadUserError = error => ({
+  type: LOAD_ALL_USER_ERROR,
+  load: error,
+});
+
+export function loadAllUsers() {
+  return dispatch => {
+    dispatch(loadUsers())
+    axios.get('/users')
+      .then(data => dispatch(loadUsersSuccess(data.data)))
+      .catch( error => dispatch(loadUserError(error)))
+  }
+}
+/*END Load all users*/
+
+/* Load current user*/
+
+const loadUser = () => ({
+  type: LOAD_USER,
+});
+
+const loadUserSuccess = data => ({
+  type: LOAD_USER_SUCCESS,
+  profile: data.data,
+});
 
 export function loadUserFetch() {
   return function (dispatch) {
     dispatch(loadUser());
-    return axios.get('/users')
-      .then(data => dispatch(loadUserSuccess(data)));
+    return axios.get('/user')
+      .then(data => dispatch(loadUserSuccess(data)))
+      .catch( error => console.log(error .data))
   };
 }
+/* END Load current user */
 
 /* LogIn User Action's */
 
@@ -80,15 +115,12 @@ export function logInUser({login, password}) {
       dispatch(logInSuccess(user));
      })
     .catch(error => {
-     
       dispatch(logInError(error.response.data.errors));
-      console.log(error.response.data.errors)
-      
     });
   }
 }
 
-
+/*Sign user*/
 const signIn = () => ({
   type: SIGN_USER,
   status: false
@@ -113,15 +145,31 @@ export function signUser(data) {
     .catch(error => dispatch(signError(error.response.data.errors)))
   }
 }
+/* END Sign user */
+
+/* Logout user */
+const logOut = () => ({
+  type: LOG_OUT,
+  isLogged: false,
+});
 
 
 
 export function verifyUser() {
   return dispatch => {
-    axios.get('/verify')
+    axios.get('/verify',{ headers: {Authorization: `Bearer ${localStorage.token}`}})
     .then(response =>{
       const { activeUser } = response.data;
       dispatch(logInSuccess(activeUser))
     })
+    .catch(error =>  dispatch(logOut()))
+  }
+}
+
+export function logOutUser() {
+  return dispatch => {
+    dispatch(logOut());
+    localStorage.removeItem('token');
+    return dispatch(verifyUser());
   }
 }

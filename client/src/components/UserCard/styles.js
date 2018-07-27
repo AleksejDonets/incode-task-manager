@@ -13,7 +13,8 @@ const styles = {
   },
   fields: {
     textAlign: 'left',
-    borderBottom: '.01em solid #000',
+    position: 'relative',
+    paddingLeft: '10px',
   },
   content: {
     width: '60%',
@@ -24,8 +25,17 @@ const styles = {
   },
   span: {
     display: 'inline-block',
-    fontSize: '1em',
-  }
+    fontSize: '.9em',
+  },
+  icon: {
+    position: 'absolute',
+    top: '50%',
+    left: '0',
+    transform: 'translate(  -100%, -50%)',
+  },
+  listSkil: {
+    margin: '2px',
+  },
 };
 
 export default styles;

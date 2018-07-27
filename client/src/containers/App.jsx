@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
-import { verifyUser } from '../store/actions';
+import { verifyUser, logOutUser } from '../store/actions';
 import { AppHeader } from '../components/AppHeader';
 import { ProfilePage } from './ProfilePage';
 import { UserTasksPage } from './UserTasksPage';
@@ -10,31 +10,39 @@ import { BoardPage } from './BoardPage';
 import { TaskPage } from './TaskPage';
 import { LoginPage } from './ LoginPage';
 import { SignPage } from './SignPage';
+import { CreateTaskPage } from './CreateTaskPage';
+
 class App extends Component {
   static propTypes = {
     getUser: PropTypes.func.isRequired,
   }
   constructor(props) {
     super(props);
-
-    this.checkRouteWay = this.checkRouteWay.bind(this);
+    this.logOutUser = this.logOutUser.bind(this);
   }
 
   componentDidMount() {
-    const { getUser } = this.props;
+    const { getUser,fetchusers } = this.props;
     getUser();
+
+  }
+  logOutUser () {
+    const { logOut }=this.props;
+    logOut();
   }
 
-  checkRouteWay(isLogged, idUser) {
+  checkRouteWay(isLogged, idUser, isAdmin) {
+    console.log(isLogged)
     if (isLogged) {
       return (
         <div>
-          <AppHeader idUser={idUser} status={isLogged} />
+          <AppHeader idUser={idUser} status={isLogged} logOut={this.logOutUser} admin={isAdmin}/>
           <Switch>
+            <Route exact path="/" component={BoardPage} />
             <Route path="/logout"/>
             <Route path="/profile" component={ProfilePage} />
             <Route path="/user-tasks/:id" component={UserTasksPage} />
-            <Route exact path="/" component={BoardPage} />
+            <Route path="/task/create" component={CreateTaskPage} />
             <Route path="/tasks/task/:id" component={TaskPage} />
             <Redirect to="/profile" />
           </Switch>
@@ -47,6 +55,7 @@ class App extends Component {
           <Switch> 
             <Route path="/login" component={LoginPage} />
             <Route path="/signup" component={SignPage} />
+            <Route path="/task/creacte" />
             <Redirect to="/login" />
           </Switch> 
         </div>
@@ -58,12 +67,11 @@ class App extends Component {
   }
   
   render() {
-    const { idUser, isLogged } = this.props;
-    console.log(isLogged)
+    const { idUser, isLogged, isAdmin } = this.props;
     return (
       <div>
         {
-          this.checkRouteWay(isLogged, idUser)
+          this.checkRouteWay(isLogged, idUser, isAdmin)
         }
       </div>
     )
@@ -72,12 +80,13 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => ({
   getUser: () => dispatch(verifyUser()),
-
+  logOut: () => dispatch(logOutUser()),
 });
 
 const mapStateToProps = ({ user }) => ({
   idUser: user.profile._id,
   isLogged: user.isLogged,
+  isAdmin: user.isAdmin,
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

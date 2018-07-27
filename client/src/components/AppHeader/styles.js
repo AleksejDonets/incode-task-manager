@@ -7,6 +7,13 @@ const styles = {
   },
   noDecoration: {
     textDecoration: 'none',
+  },
+  alignRight: {
+    textDecoration: 'none',
+
+  },
+  grow: {
+    flexGrow: '1',
   }
 };
 

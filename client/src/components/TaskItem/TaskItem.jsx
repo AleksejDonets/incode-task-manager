@@ -19,7 +19,8 @@ class TaskItem extends Component {
 
   handleChangeStatus(event) {
     const { changeStatus } = this.props;
-    const { id } = this.props.task;
+    const { task: { id } } = this.props;
+
     const status = event.target.value;
     this.setState({ 
       [event.target.name]: event.target.value, 
@@ -39,7 +40,7 @@ class TaskItem extends Component {
             <Typography variant="headline" component="h2">
               {task.title}
             </Typography>
-            <Typography  variant="subheading" component="p">
+            <Typography variant="subheading" component="p">
               {task.short_description}
             </Typography>
           </Link>

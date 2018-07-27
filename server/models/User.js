@@ -12,8 +12,8 @@ const UserSchema =  new Schema({
     default: false
   },
   listSkils: {
-    type: Array,
-    default: []
+    type: String,
+    default:''
   }
 });
 

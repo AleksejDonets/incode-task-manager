@@ -2,6 +2,8 @@ export const LOGIN_USER = 'LOGIN_USER';
 export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
 export const LOGIN_USER_ERROR = 'LOGIN_USER_ERROR';
 
+export const LOG_OUT = 'LOG_OUT';
+
 export const SIGN_USER = 'SUGN_USER';
 export const SIGN_USER_SUCCESS = 'SUGN_USER_SUCCESS';
 export const SIGN_USER_ERROR = 'SUGN_USER_ERROR';
@@ -9,6 +11,10 @@ export const SIGN_USER_ERROR = 'SUGN_USER_ERROR';
 export const LOAD_USER = 'LOAD_USER';
 export const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS';
 export const LOAD_USER_ERROR = 'LOAD_USER_ERROR';
+
+export const LOAD_ALL_USER = 'LOAD_ALL_USER';
+export const LOAD_ALL_USER_SUCCESS = 'LOAD_ALL_USER_SUCCESS';
+export const LOAD_ALL_USER_ERROR = 'LOAD_ALL_USER_ERROR';
 
 export const UPDATE_USER = 'UPDATE_USER';
 export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';

@@ -94,4 +94,14 @@ module.exports = {
       res.status(500).send(e);
     }
   },
+  async fetchAllUsers(req,res) {
+    try{
+      const users = await User.find({})
+      res.send(users)
+    }catch (e){
+      e.send(e)
+    }
+    
+;
+  }
 }
