@@ -7,8 +7,7 @@ import { PersonAdd } from '@material-ui/icons';
 import styles from './styles';
 
 const AppHeader = ({ classes, idUser, status }) => {
-  if(status){
-    console.log(status)
+  if (status) {
     return (
       <div className={classes.root}>
         <AppBar position="static">
@@ -16,7 +15,6 @@ const AppHeader = ({ classes, idUser, status }) => {
             <NavLink to="/" className={classes.noDecoration}>
               <Button className={classes.navButton}>
                 Board
-               
               </Button>
             </NavLink>
             <NavLink to={`/user-tasks/${idUser}`} className={classes.noDecoration}>
@@ -50,11 +48,11 @@ const AppHeader = ({ classes, idUser, status }) => {
           </NavLink>
           <NavLink to="/signup" className={classes.noDecoration}>
             <Button className={classes.navButton}>
-              <PersonAdd /> 
+              <PersonAdd/> 
               Register
             </Button>
           </NavLink>
-         </ Toolbar> 
+         </Toolbar> 
       </AppBar>
     </div>
   )

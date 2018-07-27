@@ -34,9 +34,12 @@ module.exports = {
             errors: [info]
           });
         }
-        return req.login(user, { session: false }, loginError => {
+        if (!user) {
+          return res.send({ success: false, message: 'Autentication failed'})
+        }
+        req.login(user, { session: false }, loginError => {
           if (loginError) {
-            return res.status(500).send(loginError);
+            return next(loginError);
           }
           const payload = {
             id: user.id,

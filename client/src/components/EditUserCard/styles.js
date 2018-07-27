@@ -19,7 +19,16 @@ const styles = {
     margin: '50px auto',
     boxSizing: 'border-box',
   },
- 
+  errorForm: {
+    padding: '8px 12px',
+    color: '#880b0b',
+    fontWeight: '700',
+    fontSize: '1em',
+  },
+  headForm: {
+    fonSize: '1.2em',
+    fontWeight: '700',
+  }
 };
 
 export default styles;

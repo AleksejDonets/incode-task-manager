@@ -10,18 +10,19 @@ class LoginPage extends Component {
   }
 
   handleLog(data) {
-    const { logIn } = this.props;
+    const { logIn  } = this.props;
     logIn(data);
   }
 
   render() {
+    const { error } = this.props;
     return (
-      <LoginForm onSubmitHandler = {values => this.handleLog(values)}/>
+      <LoginForm errorMessage={ error ?  error[0] : '' } onSubmitHandler = {values => this.handleLog(values)}/>
     )
   }
 }
-const mapStateToProps = state => ({
-
+const mapStateToProps = ({user}) => ({
+  error: user.error,
 });
 const mapDispatchToProps = dispatch => ({
   logIn: (data) => dispatch(logInUser(data))

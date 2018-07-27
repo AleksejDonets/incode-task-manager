@@ -17,6 +17,12 @@ const styles = {
   linkForm: {
     textDecoration: 'none',
     color: '#a50e0e',
-  }
+  },
+  errorForm: {
+    padding: '8px 12px',
+    color: '#880b0b',
+    fontWeight: '700',
+    fontSize: '1em',
+  },
 }
 export default styles;

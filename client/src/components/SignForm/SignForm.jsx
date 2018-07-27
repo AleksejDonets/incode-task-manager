@@ -1,15 +1,20 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Card, Typography, CardActions, Button, CardContent, withStyles } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 import { CustomInput } from '../CustomInput';
 import styles from './styles';
 
-const SignForm = ({ handleSubmit, classes,  onSubmitHandler }) => {
+const SignForm = ({ handleSubmit, classes,  onSubmitHandler, errorMessage }) => {
   return (
     <form onSubmit={handleSubmit(onSubmitHandler)}>
       <Card className={classes.containerForm}>
         <CardContent className={classes.contentForm}>
+        <Typography component="h4" variant="display1">
+            Sign In
+          </Typography>
+          <Typography component="div" className={classes.errorForm}>
+            {errorMessage.message}
+          </Typography>
           <Typography component="div">
             <Field
               name="name"
@@ -47,11 +52,6 @@ const SignForm = ({ handleSubmit, classes,  onSubmitHandler }) => {
             fullWidth
           >
             Register
-          </Button>
-        </CardActions>
-        <CardActions>
-          <Button size="small" color="primary">
-            <Link to="/login" className={classes.linkForm}>Already registred ?</ Link>
           </Button>
         </CardActions>
       </Card>

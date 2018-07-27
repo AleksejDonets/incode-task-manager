@@ -64,8 +64,9 @@ const logInSuccess = (data) => ({
   
 });
 
-const logInError = () => ({
+const logInError = (error) => ({
   type: LOGIN_USER_ERROR,
+  error: error,
 })
 
 export function logInUser({login, password}) {
@@ -79,9 +80,10 @@ export function logInUser({login, password}) {
       dispatch(logInSuccess(user));
      })
     .catch(error => {
-      dispatch(logInError());
-
-      console.log(error);
+     
+      dispatch(logInError(error.response.data.errors));
+      console.log(error.response.data.errors)
+      
     });
   }
 }
@@ -92,22 +94,23 @@ const signIn = () => ({
   status: false
 });
 
-const SignSuccess = (data) => ({
+const signSuccess = (data) => ({
   type: SIGN_USER_SUCCESS,
-  data
+  profile: data,
+  isLogged: true
 });
 
 const signError = (error) => ({
   type: SIGN_USER_ERROR,
-  error
+  error: error
 })
 
 export function signUser(data) {
   return dispatch => {
     dispatch(signIn());
     axios.post('/signup', data)
-    .then(response => console.log(response))
-    .catch(error => console.log(error.message))
+    .then(response => dispatch(signSuccess(response)))
+    .catch(error => dispatch(signError(error.response.data.errors)))
   }
 }
 

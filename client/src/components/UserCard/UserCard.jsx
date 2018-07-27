@@ -13,10 +13,11 @@ const UserCard = ({ classes, user, toggleEdit }) => {
           <Typography variant="headline" component="h2">
             {user.name}
           </Typography>
-          <Typography component="p" variant="subheading" className={classes.fields}>
-            <Typography component="span" variant="caption" className={classes.span}>
+          <Typography component="span" variant="caption" className={classes.span}>
               User Email:
             </Typography > 
+          <Typography component="p" variant="subheading" className={classes.fields}>
+           
             {user.email}
           </Typography>
           <Typography component="p" variant="subheading" className={classes.fields}>

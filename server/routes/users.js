@@ -6,7 +6,7 @@ module.exports = app => {
   /* Login user**/
   app.post('/login', userController.login); 
   /* Sign up*/
-  app.post('/signup',auth , userController.signUp);
+  app.post('/signup', userController.signUp);
   /* load user data */
   app.get('/verify',auth, userController.checkUser);
 
