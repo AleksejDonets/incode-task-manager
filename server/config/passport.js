@@ -44,7 +44,6 @@ passport.use(
     (req, email, password, done) => {
       
       User.findOne({ email: email }, function(err, user){
-        console.log(user);
         if (err) { 
           return done(err); 
         }
@@ -54,7 +53,7 @@ passport.use(
         const NewUser = new User({
           name: req.body.name,
           email:email,
-          brith: req.body.name,
+          brith: req.body.brith,
         });
         NewUser.password = NewUser.encryptPassword(password);
         NewUser.save();

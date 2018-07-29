@@ -1,6 +1,7 @@
 import axios from '../../axios';
-
+import authToken from './../../authToken';
 import {
+
   LOAD_USER,
   LOAD_USER_SUCCESS,
   LOAD_ALL_USER,
@@ -31,7 +32,7 @@ export function editUserSucces(user) {
   return function (dispatch) {
     dispatch(editUser());
     dispatch(editUserSuccess(user));
-    return axios.put('/user', user);
+    return axios.put('/user', user, authToken);
   };
 }
 /* END Edit User info */
@@ -45,7 +46,7 @@ const loadUsers = () => ({
 const loadUsersSuccess = data => ({
   type: LOAD_ALL_USER_SUCCESS,
   load: true,
-  users: data
+  data,
 });
 
 const loadUserError = error => ({
@@ -56,8 +57,11 @@ const loadUserError = error => ({
 export function loadAllUsers() {
   return dispatch => {
     dispatch(loadUsers())
-    axios.get('/users')
-      .then(data => dispatch(loadUsersSuccess(data.data)))
+    axios.get('/users',  authToken)
+      .then(data => {
+        console.log(data.data)
+        dispatch(loadUsersSuccess(data.data))
+      })
       .catch( error => dispatch(loadUserError(error)))
   }
 }
@@ -77,7 +81,7 @@ const loadUserSuccess = data => ({
 export function loadUserFetch() {
   return function (dispatch) {
     dispatch(loadUser());
-    return axios.get('/user')
+    return axios.get('/user', authToken)
       .then(data => dispatch(loadUserSuccess(data)))
       .catch( error => console.log(error .data))
   };
@@ -157,7 +161,7 @@ const logOut = () => ({
 
 export function verifyUser() {
   return dispatch => {
-    axios.get('/verify',{ headers: {Authorization: `Bearer ${localStorage.token}`}})
+    axios.get('/verify',authToken)
     .then(response =>{
       const { activeUser } = response.data;
       dispatch(logInSuccess(activeUser))

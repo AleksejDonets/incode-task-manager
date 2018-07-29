@@ -1,26 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { CreateTaskForm } from '../../components/CreateTaskForm';
-import { loadAllUsers } from '../../store/actions';
+import { DateRange } from '@material-ui/icons';
+import { taskCreate } from '../../store/actions';
 
 class CreateTaskPage extends Component {
-  componentDidMount() {
-    const { loadUsers } = this.props;
-    loadUsers();
+  constructor(props) {
+    super(props);
+    this.submmitTask = this.submmitTask.bind(this);
   }
-  
+
+  submmitTask(data) {
+    const { creatorId, createTask } = this.props;
+    createTask(creatorId, data )
+  }
   render() {
+    const { arrUsers, creatorId } = this.props;
     return (
-      <CreateTaskForm />
+      <CreateTaskForm performerList={arrUsers} creatorId={creatorId} onSubmitHandler={values => this.submmitTask(values)} />
       
     )
   }
 }
-const mapStateToProps = state => ({
-
+const mapStateToProps = ({ users, user }) => ({
+  arrUsers: users.users,
+  creatorId: user.profile._id,
 });
 const mapDispatchToProps = dispatch => ({
-  loadUsers: () => dispatch(loadAllUsers()),
+  createTask: (creatorId, data) => dispatch(taskCreate(creatorId, data))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateTaskPage);

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
-import { verifyUser, logOutUser } from '../store/actions';
+import { verifyUser, logOutUser, loadAllUsers } from '../store/actions';
 import { AppHeader } from '../components/AppHeader';
 import { ProfilePage } from './ProfilePage';
 import { UserTasksPage } from './UserTasksPage';
@@ -22,9 +22,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { getUser,fetchusers } = this.props;
+    const { getUser, getAllUsers } = this.props;
     getUser();
-
+    getAllUsers();
   }
   logOutUser () {
     const { logOut }=this.props;
@@ -80,6 +80,7 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => ({
   getUser: () => dispatch(verifyUser()),
+  getAllUsers: () => dispatch(loadAllUsers()),
   logOut: () => dispatch(logOutUser()),
 });
 

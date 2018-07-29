@@ -6,6 +6,8 @@ export { verifyUser } from './ActionsUser';
 export { logOutUser } from './ActionsUser';
 export { loadAllUsers } from './ActionsUser';
 
+export { taskCreate } from './ActionsTasks';
+
 export { loadAllTasks } from './ActionsBoard';
 
 export { loadUserTask } from './ActionsTasks';

@@ -6,32 +6,38 @@ const UniSelect = (
     handleSelect,
     admin,
     status,
-    preferList,
+    performerList,
     selectName,
     selectId ,
     label,
     defaultValue,
+    meta: { touched, error },
+    input
   }) => {
   const statusList = ['To Do', 'In Progress', 'Peer Review', 'Done'];
-  const item = preferList || statusList;
+  const items = performerList || statusList;
+
   return (
     <Fragment>
       <InputLabel htmlFor="status">
         { label }
       </InputLabel>
       <Select
-        value={defaultValue || status}
+        error={error && touched}
+        value={ status }
         onChange={(event) =>handleSelect(event)}
         disabled={admin}
+        {...input}
         inputProps={
           {
             name:`${selectName}`,
             id: `${selectName} `,
           }
+          
         }
       >
         {
-          item.map(item => <MenuItem value={item} key={ item._id ? item._id : item }>{ item }</MenuItem>)
+          items.map(item => <MenuItem value={item._id || item} key={ item._id || item }>{ item.name || item }</MenuItem>)
         }
       </Select>
     </Fragment>

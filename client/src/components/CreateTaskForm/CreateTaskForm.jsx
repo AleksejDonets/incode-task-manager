@@ -1,18 +1,17 @@
 import React, { Component }from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm,  formValueSelector } from 'redux-form';
 import { Card, Typography, CardActions, Button, CardContent, withStyles } from '@material-ui/core';
 import { CustomInput, UniSelect } from '../CustomInput';
 import styles from './styles';
+import { connect } from 'react-redux';
 
 class CreateTaskForm extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      status: '' ,
-      prefer: '',
+      status: '---' ,
+      performer: '---',
     }
-
     this.handleChangeSelectVaule = this.handleChangeSelectVaule.bind(this);
   }
 
@@ -23,9 +22,10 @@ class CreateTaskForm extends Component {
   }
 
   render() {
-    const { status, prefer } = this.state;
+    const { status, performer } = this.state;
+    const { performerList, handleSubmit, onSubmitHandler } = this.props;
     return (
-      <form>
+      <form onSubmit={handleSubmit(onSubmitHandler)}>
         <Card>
           <CardContent>
             <Typography component="div">
@@ -60,22 +60,21 @@ class CreateTaskForm extends Component {
             <Typography component="div">
               <Field
                 handleSelect={this.handleChangeSelectVaule}
-                name="taskPrefer"
+                name="taskPerformer"
                 component={UniSelect}
-                
                 type="text"
-                label="Prefer"
-                selectName = "prefer"
-                status={prefer}
-              />
-              
+                label="Performer"
+                selectName = "performer"
+                status={performer}
+                performerList={performerList}
+             />
             </Typography>
             <CardActions>
             <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              fullWidth
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
             >
               Create
             </Button>
@@ -90,7 +89,22 @@ class CreateTaskForm extends Component {
   
 }
 
+CreateTaskForm = reduxForm({
+  form: 'selectingFormValues'
+})(CreateTaskForm);
 
-export default reduxForm({
-  form: 'CreateTaskForm',
-})(withStyles(styles)(CreateTaskForm));
+const selector = formValueSelector('CreateTaskForm');
+CreateTaskForm = connect(
+  state => {
+    const taskStatusValue = selector(state, 'status');
+    const taskPerformerVlaue = selector(state, 'performer');
+    const creatorId = selector(state, 'creator');
+
+    return {
+      taskStatusValue,
+      taskPerformerVlaue,
+    }
+  }
+)(CreateTaskForm)
+
+export default withStyles(styles)(CreateTaskForm);

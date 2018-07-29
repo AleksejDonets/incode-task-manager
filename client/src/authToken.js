@@ -1,12 +1,2 @@
-
-import axios from './custom-axios';
-
-const authToken = token => {
-  if (token) {
-    axios.defaults.headers.common.Authorization = token;
-  } else {
-    delete axios.defaults.headers.Authorization;
-  }
-};
-
+const authToken = { headers: {Authorization: `Bearer ${localStorage.token}`}};
 export default authToken;

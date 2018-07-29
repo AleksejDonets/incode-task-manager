@@ -21,8 +21,12 @@ mongoose.Promise = global.Promise;
 mongoose.connect(configDb.mongoUrl, { useNewUrlParser: true }  )
 require('./config/passport');
 
+require('./models/Task');
 require('./models/User');
+
 require('./routes/users')(app);
+require('./routes/tasks')(app);
+
 app.use(express.static(path.join(__dirname, '../client/build')));
 
 app.get('*', function(req, res) {
