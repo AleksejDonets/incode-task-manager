@@ -19,7 +19,8 @@ class BoardPage extends Component {
   }
 
   render() {
-    const { tasks, classes } = this.props;
+    const { tasks, classes, admin } = this.props;
+    console.log(admin)
     if (!tasks) {
       return <Loader />;
     }
@@ -34,7 +35,7 @@ class BoardPage extends Component {
         <div className={classes.TaskContainer}>
           {
             tasks.map(task => (
-              <TaskItem task={task} key={task.id} />
+              <TaskItem task={task} key={task._id} admin={ admin } />
             ))
           }
         </div>
@@ -43,8 +44,9 @@ class BoardPage extends Component {
   }
 }
 
-const mapStateToProps = ({ board }) => ({
+const mapStateToProps = ({ board, user }) => ({
   tasks: board.tasks,
+  admin: user.profile.isAdmin,
 });
 
 const mapDispatchToProps = dispatch => ({

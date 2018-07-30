@@ -5,14 +5,24 @@ const validate = (values) => {
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = 'Invalid email address';
   }
-  if(!values.first_name){
-    errors.first_name = 'Required';
+  if(!values.name){
+    errors.name = 'Required';
   }
-  if(!values.date_birth){
-    errors.date_birth = 'Required';
+  if(!values.birth){
+    errors.birth = 'Required';
   }
-  if(!values.list_of_skils){
-    errors.list_of_skils ='Required';
+  
+  if(!values.title) {
+    errors.title='Required';
+  }
+  if(!values.description) {
+    errors.description='Required';
+  }
+  if(!values.taskStatus) {
+    errors.taskStatus = 'Required';
+  }
+  if(!values.taskPerformer){
+    errors.taskPerformer = 'Required';
   }
   return errors
 };

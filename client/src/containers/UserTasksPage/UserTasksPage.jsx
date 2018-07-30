@@ -14,8 +14,8 @@ class UserTasksPage extends Component {
   }
 
   componentDidMount() {
-    const { loadActiveTasks, match } = this.props;
-    loadActiveTasks(match.params.id);
+    const { loadActiveTasks, id } = this.props;
+    loadActiveTasks(id);
   }
 
   render() {
@@ -25,7 +25,7 @@ class UserTasksPage extends Component {
       classes,
       isLoad,
     } = this.props;
-    if (!isLoad) {
+    if (isLoad) {
       return <Loader />;
     }
     return (
@@ -38,7 +38,7 @@ class UserTasksPage extends Component {
         <div className={classes.TaskContainer}>
           {
             userTasks.map(task => (
-              <TaskItem task={task} key={task.id} admin={isAdmin} />
+              <TaskItem task={task} key={task._id} admin={isAdmin} />
             ))
           }
         </div>
@@ -48,7 +48,7 @@ class UserTasksPage extends Component {
 }
 
 const mapStateToProps = ({ user, task }) => ({
-  id: user.profile,
+  id: user.profile._id,
   isAdmin: user.profile.isAdmin,
   userTasks: task.userTask,
   isLoad: task.loadStatus,

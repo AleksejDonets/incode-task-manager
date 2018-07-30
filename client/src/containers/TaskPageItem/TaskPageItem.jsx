@@ -17,7 +17,7 @@ class TaskPageItem extends Component {
     super(props);
     const { task } = this.props;
     this.state = {
-      status: task.status,
+      status: task.taskStatus,
     };
     this.handleChangeStatus = this.handleChangeStatus.bind(this);
     this.addComment = this.addComment.bind(this);
@@ -50,11 +50,11 @@ class TaskPageItem extends Component {
     this.setState({
       [event.target.name]: event.target.value,
     });
-    changeStatus(task.id, status);
+    changeStatus(task._id, status);
   }
 
   render() {
-    const { classes, task, isAdmin } = this.props;
+    const { classes, task, isAdmin, task:{comments} } = this.props;
     const { status } = this.state;
     return (
       <Card className={classes.card}>
@@ -67,18 +67,18 @@ class TaskPageItem extends Component {
           </Typography>
           <TaskStatus admin={isAdmin} onChange={this.handleChangeStatus} status={status} />
         </CardContent>
-        <Comments messages={task.comments} id={task.id} addComment={this.addComment} />
+        <Comments messages={comments} id={task.id} addComment={this.addComment} />
       </Card>
     );
   }
 }
 
-const mapStateToPops = ({ user, selectedTask }) => ({
+const mapStateToPops = ({ user, task }) => ({
   isAdmin: user.isAdmin,
-  userId: user.profile.id,
-  userName: user.profile.first_name,
-  taskId: selectedTask.activeTask.id,
-  comments: selectedTask.activeTask.comments,
+  userId: user.profile._id,
+  userName: user.profile.name,
+  taskId: task.activeTask._id,
+  comments: task.activeTask.comments,
 });
 const mapDispatchToProps = dispatch => ({
   changeStatus: (id, status, preferId) => dispatch(changeStatusTask(id, status, preferId)),

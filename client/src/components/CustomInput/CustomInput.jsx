@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 
-const CustomInput = ({ label, type,  className, input, multiline, meta: { touched, error }}) => {
+const CustomInput = ({ label, rows, type, className, input, multiline, meta: { touched, error }}) => {
   return (
     <div>
       <TextField
@@ -11,6 +11,7 @@ const CustomInput = ({ label, type,  className, input, multiline, meta: { touche
         label={ label }
         type={ type }
         multiline={multiline}
+        rows={rows}
         {...input}
       />
     </div>

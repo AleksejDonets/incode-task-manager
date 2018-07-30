@@ -2,13 +2,11 @@ const styles = {
   containerForm: {
     maxWidth: '600px',
     width: '100%',
-    margin: '0 auto',
-    marginTop: '50px',
+    margin: '50px auto',
     paddingBottom: '25px',
   },
   contentForm: {
     textAlign: 'center',
-    
   },
   inputForm: {
     maxWidth: '400px',

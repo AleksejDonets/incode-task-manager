@@ -8,6 +8,7 @@ class TaskPage extends Component {
   componentDidMount() {
     const { match: { params: { id } }, loadCurrentTask } = this.props;
     loadCurrentTask(id);
+    console.log(id);
   }
 
   render() {
@@ -23,10 +24,10 @@ class TaskPage extends Component {
   }
 }
 
-const mapStateToProps = ({ selectedTask, user }) => ({
-  task: selectedTask.activeTask,
+const mapStateToProps = ({ task, user }) => ({
+  task: task.activeTask,
   isAdmin: user.isAdmin,
-  isLoad: selectedTask.loadStatus,
+  isLoad: task.loadStatus,
 });
 const mapDispatchToProps = dispatch => ({
   loadCurrentTask: id => dispatch(loadTaskSelected(id)),

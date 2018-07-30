@@ -27,9 +27,9 @@ const loadSelectedTaskError = error => ({
 export function loadTaskSelected(id) {
   return function (dispatch) {
     dispatch(loadSelectedTask());
-    return axios.get(`/tasks/${id}`)
-      .then(data => dispatch(loadSelectedTaskSuccess(data)))
-      .catch(error => dispatch(loadSelectedTaskError(error)));
+    return axios.get(`/tasks/${id}`, { 'id' : id })
+      .then(data =>dispatch(loadSelectedTaskSuccess(data)))
+      .catch(error => dispatch(loadSelectedTaskError(error)))
   };
 }
 
@@ -50,9 +50,12 @@ const addCommentError = () => ({
 export function commentAdd(idTask, comment) {
   return function (dispatch) {
     dispatch(addComment());
-    return axios.patch(`/tasks/${idTask}`, { "comments": comment })
-      .then(() => dispatch(loadSelectedTaskSuccess(idTask)))
-      .then(() => dispatch(addCommentSuccess()))
+    return axios.post(`/task/comment/${idTask}`, { idTask, comment })
+      .then(data =>{
+        dispatch(addCommentSuccess())
+        dispatch(loadSelectedTaskSuccess(data))
+      })
+
       .catch(error => dispatch(addCommentError(error)));
   };
 }

@@ -9,7 +9,7 @@ const SignForm = ({ handleSubmit, classes,  onSubmitHandler, errorMessage }) => 
     <form onSubmit={handleSubmit(onSubmitHandler)}>
       <Card className={classes.containerForm}>
         <CardContent className={classes.contentForm}>
-        <Typography component="h4" variant="display1">
+          <Typography component="h4" variant="display1">
             Sign In
           </Typography>
           <Typography component="div" className={classes.errorForm}>
