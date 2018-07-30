@@ -10,6 +10,11 @@ const styles = {
     marginTop:'15px',
     marginBottom: '15px',
 
+  },
+  taskDescription: {
+    height: '100px',
+    textOverflow: 'ellipsis',
+    overflow:'hidden',
   }
 }
 export default styles;

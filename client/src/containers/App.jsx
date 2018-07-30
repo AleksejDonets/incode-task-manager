@@ -11,7 +11,7 @@ import { TaskPage } from './TaskPage';
 import { LoginPage } from './ LoginPage';
 import { SignPage } from './SignPage';
 import { CreateTaskPage } from './CreateTaskPage';
-
+import { EditTaskPage } from './EditTaskPage';
 class App extends Component {
   static propTypes = {
     getUser: PropTypes.func.isRequired,
@@ -32,31 +32,34 @@ class App extends Component {
   }
 
   checkRouteWay(isLogged, idUser, isAdmin) {
-    console.log(isLogged)
+
     if (isLogged) {
       return (
         <div>
-          <AppHeader idUser={idUser} status={isLogged} logOut={this.logOutUser} admin={isAdmin}/>
+          <AppHeader idUser={idUser} status={isLogged} logOut={this.logOutUser} admin={isAdmin} />
           <Switch>
             <Route exact path="/" component={BoardPage} />
-            <Route path="/logout"/>
             <Route path="/profile" component={ProfilePage} />
             <Route path="/user-tasks/:id" component={UserTasksPage} />
             <Route path="/task/create" component={CreateTaskPage} />
             <Route path="/tasks/task/:id" component={TaskPage} />
-            <Redirect to="/profile" />
+            <Route path="/task/edit" component={EditTaskPage} />
+            <Route path="/logout" />
+            {!isLogged && <Redirect to='/login' />}
           </Switch>
+         
         </div>
       ) 
     }else {
       return(
         <div>
           <AppHeader idUser={idUser} status={isLogged} />
+          
           <Switch> 
             <Route path="/login" component={LoginPage} />
             <Route path="/signup" component={SignPage} />
             <Route path="/task/creacte" />
-            <Redirect to="/login" />
+            
           </Switch> 
         </div>
        

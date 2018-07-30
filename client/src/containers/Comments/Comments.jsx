@@ -11,12 +11,11 @@ import {
 import { AddComment } from '../AddComment';
 
 const Comments = ({ messages, addComment }) => {
-  return (
-    <Card>
-      <CardContent>
-        <Typography variant="headline">
-          Comments
-        </Typography>
+  const date = new Date(messages[0].createdAt);
+  console.log(date)
+  const commentsList = (messages) => {
+    if(messages) {
+      return (
         <List>
           {messages.map(message => {
             return (
@@ -36,6 +35,21 @@ const Comments = ({ messages, addComment }) => {
             );
           })}
         </List>
+      )
+    }
+    return (
+      <Typography variant="subheading">
+        No comments
+      </ Typography> 
+    )
+  }
+  return (
+    <Card>
+      <CardContent>
+        <Typography variant="headline">
+          Comments
+        </Typography>
+        {commentsList(messages)}
         <Divider />
         <AddComment submitHandler={addComment} />
       </CardContent>

@@ -58,10 +58,7 @@ export function loadAllUsers() {
   return dispatch => {
     dispatch(loadUsers())
     axios.get('/users',  authToken)
-      .then(data => {
-        console.log(data.data)
-        dispatch(loadUsersSuccess(data.data))
-      })
+      .then(data => dispatch(loadUsersSuccess(data.data)))
       .catch( error => dispatch(loadUserError(error)))
   }
 }
@@ -174,6 +171,6 @@ export function logOutUser() {
   return dispatch => {
     dispatch(logOut());
     localStorage.removeItem('token');
-    return dispatch(verifyUser());
+    axios.get('/verify')
   }
 }
