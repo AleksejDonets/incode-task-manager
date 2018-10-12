@@ -7,22 +7,25 @@ import { taskCreate } from '../../store/actions';
 class CreateTaskPage extends Component {
   constructor(props) {
     super(props);
-    this.submmitTask = this.submmitTask.bind(this);
+    this.submitTask = this.submitTask.bind(this);
   }
 
-  submmitTask(data) {
-    const { creatorId, createTask, ressetForm } = this.props;
+  submitTask(data) {
+    const { creatorId, createTask, resetForm } = this.props;
     createTask(creatorId, data);
-    ressetForm();
+    resetForm();
   }
 
   render() {
     const { arrUsers, creatorId, createdMessage } = this.props;
     return (
-      <CreateTaskForm performerList={arrUsers} creatorId={creatorId} onSubmitHandler={values => this.submmitTask(values)} message={createdMessage}/>
-    )
-
-    
+      <CreateTaskForm
+        performerList={arrUsers}
+        creatorId={creatorId}
+        onSubmitHandler={values => this.submitTask(values)}
+        message={createdMessage}
+      />
+    );
   }
 }
 const mapStateToProps = ({ users, user, task }) => ({
@@ -32,7 +35,7 @@ const mapStateToProps = ({ users, user, task }) => ({
 });
 const mapDispatchToProps = dispatch => ({
   createTask: (creatorId, data) => dispatch(taskCreate(creatorId, data)),
-  ressetForm: () => dispatch(reset('CreateTaskForm')),
+  resetForm: () => dispatch(reset('CreateTaskForm')),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateTaskPage);

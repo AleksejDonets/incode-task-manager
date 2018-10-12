@@ -11,7 +11,7 @@ import styles from './styles';
 class TaskPageItem extends Component {
   static defaultProps = {
     task: PropTypes.obj,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -54,7 +54,7 @@ class TaskPageItem extends Component {
   }
 
   render() {
-    const { classes, task, isAdmin, task:{comments} } = this.props;
+    const { classes, task, isAdmin, task: { comments } } = this.props;
     const { status } = this.state;
     return (
       <Card className={classes.card}>

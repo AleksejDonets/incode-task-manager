@@ -24,19 +24,22 @@ const UserCard = ({ classes, user, toggleEdit }) => {
           </Typography>
           <Typography component="div" variant="subheading" className={classes.fields}>
             <List className={ classes.icon } />
-            {listSkil.map(item => {
-              return (
-                <Chip key={item} label={item} className={classes.listSkil} />
-              )
-            })}
-            
+            {listSkil.map( item => (
+              <Chip key={item} label={item} className={classes.listSkil} />
+              
+            ))}
           </Typography>
         </CardContent>
         <CardActions className={classes.alItem}>
-            <IconButton color="primary" onClick={toggleEdit} className={classes.button} component="span">
-              <Edit />
-            </IconButton >
-          </CardActions>
+          <IconButton
+            color="primary"
+            onClick={toggleEdit}
+            className={classes.button}
+            component="span"
+          >
+            <Edit />
+          </IconButton>
+        </CardActions>
       </Card>
     </Fragment>
   );

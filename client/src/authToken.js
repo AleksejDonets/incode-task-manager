@@ -1,2 +1,2 @@
-const authToken = { headers: {Authorization: `Bearer ${localStorage.token}`}};
+const authToken = { headers: { Authorization: `Bearer ${localStorage.token}` }};
 export default authToken;

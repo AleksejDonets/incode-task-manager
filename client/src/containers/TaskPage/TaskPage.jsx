@@ -8,7 +8,6 @@ class TaskPage extends Component {
   componentDidMount() {
     const { match: { params: { id } }, loadCurrentTask } = this.props;
     loadCurrentTask(id);
-    console.log(id);
   }
 
   render() {

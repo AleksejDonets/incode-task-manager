@@ -55,7 +55,6 @@ export function commentAdd(idTask, comment) {
         dispatch(addCommentSuccess())
         dispatch(loadSelectedTaskSuccess(data))
       })
-
       .catch(error => dispatch(addCommentError(error)));
   };
 }

@@ -12,28 +12,28 @@ import {
 
 const initialState = {
   profile: {},
-  users:[],
+  users: [],
   isLogged: false,
   error: false,
-  load: false
+  load: false,
 };
 
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case LOGIN_USER_ERROR: 
+    case LOGIN_USER_ERROR:
       return Object.assign({}, state, { error: action.error });
-    case LOGIN_USER_SUCCESS: 
+    case LOGIN_USER_SUCCESS:
       return Object.assign({}, state, { isLogged: action.isLogged, profile: action.profile });
-    case SIGN_USER_SUCCESS: 
+    case SIGN_USER_SUCCESS:
       return Object.assign({}, state, { profile: action.data, isLogged: action.isLogged });
-    case SIGN_USER_ERROR: 
+    case SIGN_USER_ERROR:
       return Object.assign({}, state, { error: action.error });
     case LOAD_USER_SUCCESS:
       return Object.assign({}, state, { profile: action.profile });
     case UPDATE_USER_SUCCESS:
       return Object.assign({}, state, { profile: action.user });
-    case LOG_OUT: 
+    case LOG_OUT:
       return Object.assign({}, state, { isLogged: action.isLogged });
     default:
       return state;

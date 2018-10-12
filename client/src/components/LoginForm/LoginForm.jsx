@@ -43,7 +43,7 @@ const LoginForm = ({ handleSubmit,classes, onSubmitHandler, errorMessage }) => {
             color="primary"
             fullWidth
           >
-            Sign In
+            LogIn
           </Button>
          
         </CardActions>

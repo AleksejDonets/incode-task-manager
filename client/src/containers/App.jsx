@@ -1,6 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch, Route, withRouter, Redirect,
+} from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { verifyUser, logOutUser, loadAllUsers } from '../store/actions';
 import { AppHeader } from '../components/AppHeader';
@@ -12,10 +15,13 @@ import { LoginPage } from './ LoginPage';
 import { SignPage } from './SignPage';
 import { CreateTaskPage } from './CreateTaskPage';
 import { EditTaskPage } from './EditTaskPage';
+import { PrivateRoute } from '../components/PrivateRoute';
+
 class App extends Component {
   static propTypes = {
     getUser: PropTypes.func.isRequired,
   }
+
   constructor(props) {
     super(props);
     this.logOutUser = this.logOutUser.bind(this);
@@ -26,60 +32,39 @@ class App extends Component {
     getUser();
     getAllUsers();
   }
-  logOutUser () {
-    const { logOut }=this.props;
+
+  componentDidUpdate() {
+    const { getUser } = this.props;
+    getUser();
+  }
+
+  logOutUser() {
+    const { logOut } = this.props;
     logOut();
   }
 
-  checkRouteWay(isLogged, idUser, isAdmin) {
-
-    if (isLogged) {
-      return (
-        <div>
-          <AppHeader idUser={idUser} status={isLogged} logOut={this.logOutUser} admin={isAdmin} />
-          <Switch>
-            <Route exact path="/" component={BoardPage} />
-            <Route path="/profile" component={ProfilePage} />
-            <Route path="/user-tasks/:id" component={UserTasksPage} />
-            <Route path="/task/create" component={CreateTaskPage} />
-            <Route path="/tasks/task/:id" component={TaskPage} />
-            <Route path="/task/edit" component={EditTaskPage} />
-            <Route path="/logout" />
-            {!isLogged && <Redirect to='/login' />}
-          </Switch>
-         
-        </div>
-      ) 
-    }else {
-      return(
-        <div>
-          <AppHeader idUser={idUser} status={isLogged} />
-          
-          <Switch> 
-            <Route path="/login" component={LoginPage} />
-            <Route path="/signup" component={SignPage} />
-            <Route path="/task/creacte" />
-            
-          </Switch> 
-        </div>
-       
-      )
-      
-    }
-    
-  }
-  
   render() {
     const { idUser, isLogged, isAdmin } = this.props;
     return (
-      <div>
-        {
-          this.checkRouteWay(isLogged, idUser, isAdmin)
-        }
-      </div>
-    )
+      <Fragment>
+        <AppHeader idUser={idUser} status={isLogged} logOut={this.logOutUser} admin={isAdmin} />
+        <Router>
+          <Switch>
+            <PrivateRoute exact path="/" status={isLogged} component={BoardPage} />
+            <PrivateRoute exact path="/profile" status={isLogged} component={ProfilePage} />
+            <PrivateRoute exact path="/user-tasks/:id" status={isLogged} component={UserTasksPage} />
+            <PrivateRoute exact path="/task/create" status={isLogged} component={CreateTaskPage} />
+            <PrivateRoute exact path="/tasks/task/:id" status={isLogged} component={TaskPage} />
+            <PrivateRoute exact path="/task/edit" status={isLogged} component={EditTaskPage} />
+            <PrivateRoute exact path="/login" status={isLogged} component={LoginPage} />
+            <PrivateRoute exact path="/signup" status={isLogged} component={SignPage} />
+            <Route exact path="/logout" status={isLogged} component={LoginPage} />
+          </Switch>
+        </Router>
+      </Fragment>
+    );
   }
-};
+}
 
 const mapDispatchToProps = dispatch => ({
   getUser: () => dispatch(verifyUser()),

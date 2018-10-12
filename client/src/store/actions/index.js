@@ -11,13 +11,13 @@ export {
 export { taskCreate } from './ActionsTasks';
 export { loadAllTasks } from './ActionsBoard';
 
-export { 
-  loadUserTask, 
-  taskEdit, 
+export {
+  loadUserTask,
+  taskEdit,
   changeStatusTask,
-   taskEditSuccess, 
-   deleteTaskSuccess 
+   taskEditSuccess,
+   deleteTaskSuccess
   } from './ActionsTasks';
 
 export { loadTaskSelected } from './ActionTaskPage';
-export { commentAdd } from './ActionTaskPage'; 
+export { commentAdd } from './ActionTaskPage';
