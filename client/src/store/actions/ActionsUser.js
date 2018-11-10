@@ -93,10 +93,11 @@ const logIn = () => ({
 
 });
 
-const logInSuccess = data => ({
+const logInSuccess = (user, isLoad) => ({
   type: LOGIN_USER_SUCCESS,
   isLogged: true,
-  profile: data,
+  profile: user,
+  load: isLoad,
 
 });
 
@@ -110,10 +111,9 @@ export function logInUser({ login, password }) {
     dispatch(logIn());
     axios.post('/login', { login, password })
       .then((response) => {
-        const { token, user } = response.data;
+        const { token, user, isLoad } = response.data;
         localStorage.setItem('token', token);
-        dispatch(push('/'));
-        dispatch(logInSuccess(user));
+        dispatch(logInSuccess(user, isLoad));
       })
       .catch((error) => {
         dispatch(logInError(error.response.data.errors));
@@ -142,11 +142,12 @@ export function verifyUser() {
   return (dispatch) => {
     axios.get('/verify', authToken)
       .then((response) => {
-        const { activeUser } = response.data;
-        dispatch(logInSuccess(activeUser));
+        const { activeUser, isLoad } = response.data;
+        dispatch(logInSuccess(activeUser, isLoad));
       })
       .catch(error => {
         console.log(error);
+        dispatch(push('/login'))
         dispatch(logOut())
       });
   };
@@ -166,14 +167,13 @@ export function signUser(data) {
 const logOut = () => ({
   type: LOG_OUT,
   isLogged: false,
+  load: true,
 });
-
-
-
 
 export function logOutUser() {
   return (dispatch) => {
     dispatch(logOut());
+    dispatch(push('/login'));
     localStorage.removeItem('token');
     axios.get('/verify');
   };

@@ -15,8 +15,7 @@ class SignPage extends Component {
   }
 
   render() {
-    const { error, location } = this.props;
-    console.log(location);
+    const { error } = this.props;
     return (
       <SignForm errorMessage={error ? error[0] : ''} onSubmitHandler={values => this.handleSign(values)} />
     );

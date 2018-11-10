@@ -24,9 +24,9 @@ export default (state = initialState, action) => {
     case LOGIN_USER_ERROR:
       return Object.assign({}, state, { error: action.error });
     case LOGIN_USER_SUCCESS:
-      return Object.assign({}, state, { isLogged: action.isLogged, profile: action.profile });
+      return Object.assign({}, state, { isLogged: action.isLogged, profile: action.profile, load: action.load });
     case SIGN_USER_SUCCESS:
-      return Object.assign({}, state, { profile: action.data, isLogged: action.isLogged });
+      return Object.assign({}, state, { profile: action.data, isLogged: action.isLogged, load: true });
     case SIGN_USER_ERROR:
       return Object.assign({}, state, { error: action.error });
     case LOAD_USER_SUCCESS:
@@ -34,7 +34,7 @@ export default (state = initialState, action) => {
     case UPDATE_USER_SUCCESS:
       return Object.assign({}, state, { profile: action.user });
     case LOG_OUT:
-      return Object.assign({}, state, { isLogged: action.isLogged });
+      return Object.assign({}, state, { isLogged: action.isLogged, load: true });
     default:
       return state;
   }
