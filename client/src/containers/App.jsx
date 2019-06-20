@@ -1,6 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch, withRouter, Route
+} from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { verifyUser, logOutUser, loadAllUsers } from '../store/actions';
 import { AppHeader } from '../components/AppHeader';
@@ -12,10 +15,14 @@ import { LoginPage } from './ LoginPage';
 import { SignPage } from './SignPage';
 import { CreateTaskPage } from './CreateTaskPage';
 import { EditTaskPage } from './EditTaskPage';
+import { PrivateRoute } from '../components/PrivateRoute';
+import { Loader } from '../components/Loader';
+
 class App extends Component {
   static propTypes = {
     getUser: PropTypes.func.isRequired,
   }
+
   constructor(props) {
     super(props);
     this.logOutUser = this.logOutUser.bind(this);
@@ -26,60 +33,50 @@ class App extends Component {
     getUser();
     getAllUsers();
   }
-  logOutUser () {
-    const { logOut }=this.props;
+
+  componentDidUpdate() {
+    const { getUser, getAllUsers } = this.props;
+    getUser();
+    getAllUsers();
+  }
+
+  logOutUser() {
+    const { logOut } = this.props;
     logOut();
   }
 
-  checkRouteWay(isLogged, idUser, isAdmin) {
-
-    if (isLogged) {
-      return (
-        <div>
+  appRoute() {
+    const { idUser, isLogged, isAdmin, isLoad } = this.props;
+    return (
+      <Router>
+        <Fragment>
           <AppHeader idUser={idUser} status={isLogged} logOut={this.logOutUser} admin={isAdmin} />
           <Switch>
-            <Route exact path="/" component={BoardPage} />
-            <Route path="/profile" component={ProfilePage} />
-            <Route path="/user-tasks/:id" component={UserTasksPage} />
-            <Route path="/task/create" component={CreateTaskPage} />
-            <Route path="/tasks/task/:id" component={TaskPage} />
-            <Route path="/task/edit" component={EditTaskPage} />
-            <Route path="/logout" />
-            {!isLogged && <Redirect to='/login' />}
+            <PrivateRoute exact path="/" component={BoardPage} status={isLogged} load={isLoad} />
+            <PrivateRoute path="/profile" component={ProfilePage} status={isLogged} load={isLoad} />
+            <PrivateRoute path="/user-tasks/:id" component={UserTasksPage} status={isLogged} load={isLoad} />
+            <PrivateRoute path="/task/create" component={CreateTaskPage} status={isLogged} load={isLoad} />
+            <PrivateRoute path="/tasks/task/:id" component={TaskPage} status={isLogged} load={isLoad} />
+            <PrivateRoute path="/task/edit" component={EditTaskPage} status={isLogged} load={isLoad} />
+            <Route path="/login" component={LoginPage} status={isLogged} load={isLoad} />
+            <PrivateRoute path="/signup" component={SignPage} status={isLogged} load={isLoad} />
+            <PrivateRoute path="/logout" component={LoginPage} status={isLogged} load={isLoad} />
           </Switch>
-         
-        </div>
-      ) 
-    }else {
-      return(
-        <div>
-          <AppHeader idUser={idUser} status={isLogged} />
-          
-          <Switch> 
-            <Route path="/login" component={LoginPage} />
-            <Route path="/signup" component={SignPage} />
-            <Route path="/task/creacte" />
-            
-          </Switch> 
-        </div>
-       
-      )
-      
-    }
-    
+        </Fragment>
+      </Router>
+    );
   }
-  
+
   render() {
-    const { idUser, isLogged, isAdmin } = this.props;
+    const { isLoad } = this.props;
+    if (!isLoad) {
+      return (<Loader />);
+    }
     return (
-      <div>
-        {
-          this.checkRouteWay(isLogged, idUser, isAdmin)
-        }
-      </div>
-    )
+      this.appRoute()
+    );
   }
-};
+}
 
 const mapDispatchToProps = dispatch => ({
   getUser: () => dispatch(verifyUser()),
@@ -91,6 +88,7 @@ const mapStateToProps = ({ user }) => ({
   idUser: user.profile._id,
   isLogged: user.isLogged,
   isAdmin: user.isAdmin,
+  isLoad: user.load,
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default connect(mapStateToProps, mapDispatchToProps)(App);

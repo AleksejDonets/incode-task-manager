@@ -15,14 +15,15 @@ class SignPage extends Component {
   }
 
   render() {
-    const { error  } = this.props;
+    const { error } = this.props;
     return (
-      <SignForm errorMessage={ error ?  error[0] : '' } onSubmitHandler={values => this.handleSign(values)}/>
-    )
+      <SignForm errorMessage={error ? error[0] : ''} onSubmitHandler={values => this.handleSign(values)} />
+    );
   }
 }
-const mapStateToProps = ({ user }) => ({
+const mapStateToProps = ({ user, router }) => ({
   error: user.error,
+  location: router.location.pathname,
 });
 const mapDispatchToProps = dispatch => ({
   signUp: data => dispatch(signUser(data)),

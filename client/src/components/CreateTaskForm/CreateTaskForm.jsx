@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
-import { Card, Typography, CardActions, Button, CardContent, withStyles } from '@material-ui/core';
+import {
+  Card, Typography, CardActions, Button, CardContent, withStyles,
+} from '@material-ui/core';
 import { CustomInput, UniSelect } from '../CustomInput';
 import styles from './styles';
 import validate from '../../utils/validate';
+
 class CreateTaskForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: '---' ,
+      status: '---',
       performer: '---',
-    }
+    };
     this.handleChangeSelectVaule = this.handleChangeSelectVaule.bind(this);
   }
 
@@ -23,17 +26,21 @@ class CreateTaskForm extends Component {
 
   render() {
     const { status, performer } = this.state;
-    const { performerList, handleSubmit, onSubmitHandler, classes, message } = this.props;
+    const {
+      performerList, handleSubmit, onSubmitHandler, classes, message,
+    } = this.props;
     return (
       <form onSubmit={handleSubmit(onSubmitHandler)}>
         <Card className={classes.formWrap}>
           <CardContent className={classes.container}>
-            {message ? 
-              (<Typography component="div" className={classes.success}>
-                    <Typography component="h3" className={classes.successText}>
-                      {message}
-                    </Typography>
-              </Typography>) 
+            {message
+              ? (
+                <Typography component="div" className={classes.success}>
+                  <Typography component="h3" className={classes.successText}>
+                    {message}
+                  </Typography>
+                </Typography>
+              )
               : null
             }
             <Typography component="div">
@@ -48,7 +55,7 @@ class CreateTaskForm extends Component {
             <Typography component="div">
               <Field
                 name="description"
-                component={ CustomInput }
+                component={CustomInput}
                 multiline
                 rows={2}
                 className={classes.input}
@@ -64,20 +71,20 @@ class CreateTaskForm extends Component {
                 className={classes.select}
                 type="text"
                 label="Status"
-                selectName = "status"
+                selectName="status"
                 status={status}
               />
-               <Field
+              <Field
                 handleSelect={this.handleChangeSelectVaule}
                 name="taskPerformer"
                 component={UniSelect}
                 type="text"
                 label="Performer"
-                selectName = "performer"
+                selectName="performer"
                 className={classes.select}
                 status={performer}
                 performerList={performerList}
-             />
+              />
             </Typography>
             <CardActions>
               <Button
@@ -88,13 +95,12 @@ class CreateTaskForm extends Component {
               >
                 Create
               </Button>
-          </CardActions>
-          </CardContent>  
+            </CardActions>
+          </CardContent>
         </Card>
       </form>
     );
   }
-  
 }
 
 CreateTaskForm = reduxForm({
@@ -104,14 +110,13 @@ CreateTaskForm = reduxForm({
 
 const selector = formValueSelector('CreateTaskForm');
 CreateTaskForm = connect(
-  state => {
+  (state) => {
     const taskStatusValue = selector(state, 'status');
     const taskPerformerVlaue = selector(state, 'performer');
     return {
       taskStatusValue,
       taskPerformerVlaue,
-    }
-  }
-)(CreateTaskForm)
-
+    };
+  },
+)(CreateTaskForm);
 export default withStyles(styles)(CreateTaskForm);

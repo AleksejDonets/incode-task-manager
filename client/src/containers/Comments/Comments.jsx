@@ -11,38 +11,34 @@ import {
 import { AddComment } from '../AddComment';
 
 const Comments = ({ messages, addComment }) => {
-  const date = new Date(messages[0].createdAt);
-  console.log(date)
-  const commentsList = (messages) => {
-    if(messages) {
+  const commentsList = () => {
+    if (messages) {
       return (
         <List>
-          {messages.map(message => {
-            return (
-              <ListItem key={message.createdAt}>
-                <ListItemText>
-                  <Typography variant="subheading" color="secondary">
-                    {message.author}
-                  </Typography>
-                  <Typography variant="body1">
-                    {message.text}
-                  </Typography>
-                  <Typography variant="caption">
-                    {message.createdAt}
-                  </Typography>
-                </ListItemText>
-              </ListItem>
-            );
-          })}
+          {messages.map(message => (
+            <ListItem key={message.createdAt}>
+              <ListItemText>
+                <Typography variant="subheading" color="secondary">
+                  {message.author}
+                </Typography>
+                <Typography variant="body1">
+                  {message.text}
+                </Typography>
+                <Typography variant="caption">
+                  {message.createdAt}
+                </Typography>
+              </ListItemText>
+            </ListItem>
+          ))}
         </List>
-      )
+      );
     }
     return (
       <Typography variant="subheading">
         No comments
-      </ Typography> 
-    )
-  }
+      </Typography>
+    );
+  };
   return (
     <Card>
       <CardContent>

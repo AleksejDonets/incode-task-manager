@@ -8,8 +8,8 @@ const CustomInput = ({ label, rows, type, className, input, multiline, meta: { t
         className={className}
         helperText={touched && error}
         error={error && touched}
-        label={ label }
-        type={ type }
+        label={label}
+        type={type}
         multiline={multiline}
         rows={rows}
         {...input}
